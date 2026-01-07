@@ -481,7 +481,7 @@
         <div
             class="container mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
             <!-- Text Content -->
-            <div class="lg:col-span-7 relative z-10">
+            <div class="lg:col-span-7 relative z-10 order-2 lg:order-1">
                 <div class="overflow-hidden mb-4">
                     <h2
                         class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-['Space_Grotesk'] font-bold leading-tight">
@@ -491,40 +491,25 @@
                 <div class="w-16 md:w-20 h-1 bg-[#0A8BC9] mb-6 md:mb-8"></div>
                 <div class="space-y-4 md:space-y-6">
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        <span class="text-[#0A8BC9] font-medium">I am Solomon Olad, originally Solomon Igbojuwo,</span>
-                        an entrepreneur building skills to create wealth across business, technology, and financial
-                        markets.
+                        <span class="text-[#0A8BC9] font-medium">I am Solomon Olad, originally Solomon Igbojuwo.</span> I am an entrepreneur focused on building lasting wealth through business, technology, and financial markets.
                     </p>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        My journey spans <span class="text-white font-medium">frontend development, graphic design, and
-                            trading</span>. I believe in the power of disciplined execution, continuous learning, and
-                        building systems that scale.
+                        My experience spans <span class="text-white font-medium">frontend development, graphic design, and trading</span>. Central to my work are disciplined execution, continuous learning, and creating systems that scale.
                     </p>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        Every project is an opportunity to push boundaries, challenge conventions, and create
-                        experiences that resonate.
+                        I operate where <span class="text-[#0A8BC9] font-medium">brand strategy meets creative engineering</span>—crafting intentional digital experiences designed to help businesses stand out in a crowded marketplace.
                     </p>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        I'm a versatile designer and entrepreneur building skills at the intersection of <span
-                            class="text-[#0A8BC9] font-medium">brand strategy and creative engineering</span>. I don't
-                        just design websites; I craft meaningful digital experiences that help businesses stand out in a
-                        crowded market.
+                        I am in the <span class="text-white font-medium">early, intentional stages of my entrepreneurial journey</span>. My focus is on learning practical skills, applying them in real-world settings, and letting the results compound over time. I see myself as a builder, not an expert—someone who experiments, documents, and grows.
                     </p>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        I'm at an early but intentional stage of my entrepreneurial journey. My focus is simple: <span
-                            class="text-white font-medium">learn real-world skills, apply them in practical
-                            environments, and compound progress over time</span>. I'm not positioning myself as a guru
-                        or expert — I'm building, experimenting, and documenting.
-                    </p>
-                    <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        This site exists to give a clear picture of who I am, what I'm working on, and what I'm capable
-                        of.
+                        This site serves as a clear window into <span class="text-white font-medium">who I am, what I'm working on, and what I'm capable of creating</span>.
                     </p>
                 </div>
             </div>
 
             <!-- Image Area -->
-            <div class="lg:col-span-5 relative mt-8 lg:mt-0">
+            <div class="lg:col-span-5 relative order-1 lg:order-2 mt-0">
                 <div class="relative aspect-[3/4] bg-[#181B21] overflow-hidden rounded-lg">
                     <!-- Replace this src with your actual image file -->
                     <img src="solomon.JPG" alt="Solomon Olad" class="object-cover w-full h-full">
@@ -969,6 +954,17 @@
             // --- PARALLAX ON HERO ---
             gsap.to('#hero h1', {
                 y: 100,
+                scrollTrigger: {
+                    trigger: '#hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 1
+                }
+            });
+
+            // --- HERO FADE OUT ---
+            gsap.to('#hero > div', {
+                opacity: 0,
                 scrollTrigger: {
                     trigger: '#hero',
                     start: 'top top',
