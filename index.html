@@ -16,6 +16,7 @@
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -425,37 +426,65 @@
     <div class="cursor-outline"></div>
 
     <!-- Navigation (GLM4) - Fixed for mobile -->
-    <nav class="fixed top-0 left-0 w-full p-4 md:p-6 lg:p-10 flex justify-between items-center z-50 bg-black/0 md:mix-blend-difference text-white opacity-0 transition-all duration-300"
+    <nav class="fixed top-0 left-0 w-full px-4 py-4 md:px-10 md:py-6 flex justify-between items-center z-50 bg-black/0 md:mix-blend-difference text-white opacity-0 transition-all duration-300"
         id="main-nav">
-        <div class="text-lg font-bold tracking-tighter">SOLOMON.</div>
+        <div
+            class="text-xl md:text-2xl font-bold tracking-tighter hover:text-[#0A8BC9] transition-colors cursor-pointer">
+            SOLOMON.</div>
         <div class="hidden md:flex gap-6 lg:gap-8 text-sm font-medium tracking-wide">
             <a href="#about" class="nav-link hover:text-[#0A8BC9] transition-colors">About</a>
-            <a href="#focus" class="nav-link hover:text-[#0A8BC9] transition-colors">Focus</a>
+            <a href="#focus-wrapper" class="nav-link hover:text-[#0A8BC9] transition-colors">Focus</a>
             <a href="#technical" class="nav-link hover:text-[#0A8BC9] transition-colors">Technical</a>
             <a href="#contact" class="nav-link hover:text-[#0A8BC9] transition-colors">Contact</a>
         </div>
-        <button class="md:hidden text-white" id="mobile-menu-btn">
-            <i data-lucide="menu"></i>
+        <button class="md:hidden text-white hover:text-[#0A8BC9] transition-colors" id="mobile-menu-btn">
+            <i data-lucide="menu" class="w-8 h-8"></i>
         </button>
     </nav>
 
     <!-- Mobile Menu (Hidden by default) -->
-    <div class="fixed top-0 left-0 w-full h-0 bg-black z-40 overflow-hidden transition-all duration-300"
+    <div class="fixed top-0 left-0 w-full h-0 bg-black z-40 overflow-hidden transition-all duration-300 flex flex-col items-center justify-center"
         id="mobile-menu">
-        <div class="flex flex-col items-center justify-center h-full gap-8">
-            <a href="#about" class="text-2xl hover:text-[#0A8BC9] transition-colors">About</a>
-            <a href="#focus" class="text-2xl hover:text-[#0A8BC9] transition-colors">Focus</a>
-            <a href="#technical" class="text-2xl hover:text-[#0A8BC9] transition-colors">Technical</a>
-            <a href="#contact" class="text-2xl hover:text-[#0A8BC9] transition-colors">Contact</a>
+        <div class="flex flex-col items-center justify-center gap-8 mb-8">
+            <a href="#about"
+                class="text-3xl font-['Space_Grotesk'] font-bold hover:text-[#0A8BC9] transition-colors">About</a>
+            <a href="#focus-wrapper"
+                class="text-3xl font-['Space_Grotesk'] font-bold hover:text-[#0A8BC9] transition-colors">Focus</a>
+            <a href="#technical"
+                class="text-3xl font-['Space_Grotesk'] font-bold hover:text-[#0A8BC9] transition-colors">Technical</a>
+            <a href="#contact"
+                class="text-3xl font-['Space_Grotesk'] font-bold hover:text-[#0A8BC9] transition-colors">Contact</a>
+        </div>
+
+        <!-- Social Icons for Mobile Menu -->
+        <div class="flex gap-8 mt-4">
+            <a href="https://youtube.com/@solomonolad?si=pijKi0NppM0LZKay" target="_blank"
+                class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
+                <i data-lucide="youtube" class="w-8 h-8"></i>
+            </a>
+            <a href="https://ng.linkedin.com/in/solomon-olad-a5aa76306" target="_blank"
+                class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
+                <i data-lucide="linkedin" class="w-8 h-8"></i>
+            </a>
+            <a href="https://www.instagram.com/realsolomonolad/" target="_blank"
+                class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
+                <i data-lucide="instagram" class="w-8 h-8"></i>
+            </a>
         </div>
     </div>
 
     <!-- Social Links Bottom Left (GLM4) - Hidden on mobile -->
     <div class="fixed bottom-10 left-6 md:left-10 z-40 hidden md:flex flex-col gap-4 opacity-0" id="social-links">
-        <a href="#" class="text-[#0A8BC9] hover:text-[#0da0e6] transition-colors"><i data-lucide="youtube"></i></a>
-        <a href="#" class="text-[#0A8BC9] hover:text-[#0da0e6] transition-colors"><i data-lucide="linkedin"></i></a>
-        <a href="#" class="text-[#0A8BC9] hover:text-[#0da0e6] transition-colors"><i data-lucide="instagram"></i></a>
-        <div class="w-px h-10 bg-gray-800 mt-2"></div>
+        <a href="https://youtube.com/@solomonolad?si=pijKi0NppM0LZKay" target="_blank"
+            class="text-[#0A8BC9] hover:text-[#0da0e6] transition-colors transform hover:translate-x-1 transition-transform"><i
+                data-lucide="youtube"></i></a>
+        <a href="https://ng.linkedin.com/in/solomon-olad-a5aa76306" target="_blank"
+            class="text-[#0A8BC9] hover:text-[#0da0e6] transition-colors transform hover:translate-x-1 transition-transform"><i
+                data-lucide="linkedin"></i></a>
+        <a href="https://www.instagram.com/realsolomonolad/" target="_blank"
+            class="text-[#0A8BC9] hover:text-[#0da0e6] transition-colors transform hover:translate-x-1 transition-transform"><i
+                data-lucide="instagram"></i></a>
+        <div class="w-px h-10 bg-gray-800 mt-2 ml-[11px]"></div>
     </div>
 
     <!-- HERO SECTION -->
@@ -491,19 +520,29 @@
                 <div class="w-16 md:w-20 h-1 bg-[#0A8BC9] mb-6 md:mb-8"></div>
                 <div class="space-y-4 md:space-y-6">
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        <span class="text-[#0A8BC9] font-medium">I am Solomon Olad, originally Solomon Igbojuwo.</span> I am an entrepreneur focused on building lasting wealth through business, technology, and financial markets.
+                        <span class="text-[#0A8BC9] font-medium">I am Solomon Olad, originally Solomon Igbojuwo.</span>
+                        I am an entrepreneur focused on building lasting wealth through business, technology, and
+                        financial markets.
                     </p>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        My experience spans <span class="text-white font-medium">frontend development, graphic design, and trading</span>. Central to my work are disciplined execution, continuous learning, and creating systems that scale.
+                        My experience spans <span class="text-white font-medium">frontend development, graphic design,
+                            and trading</span>. Central to my work are disciplined execution, continuous learning, and
+                        creating systems that scale.
                     </p>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        I operate where <span class="text-[#0A8BC9] font-medium">brand strategy meets creative engineering</span>—crafting intentional digital experiences designed to help businesses stand out in a crowded marketplace.
+                        I operate where <span class="text-[#0A8BC9] font-medium">brand strategy meets creative
+                            engineering</span>—crafting intentional digital experiences designed to help businesses
+                        stand out in a crowded marketplace.
                     </p>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        I am in the <span class="text-white font-medium">early, intentional stages of my entrepreneurial journey</span>. My focus is on learning practical skills, applying them in real-world settings, and letting the results compound over time. I see myself as a builder, not an expert—someone who experiments, documents, and grows.
+                        I am in the <span class="text-white font-medium">early, intentional stages of my entrepreneurial
+                            journey</span>. My focus is on learning practical skills, applying them in real-world
+                        settings, and letting the results compound over time. I see myself as a builder, not an
+                        expert—someone who experiments, documents, and grows.
                     </p>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        This site serves as a clear window into <span class="text-white font-medium">who I am, what I'm working on, and what I'm capable of creating</span>.
+                        This site serves as a clear window into <span class="text-white font-medium">who I am, what I’m
+                            working on, and what I’m capable of creating</span>.
                     </p>
                 </div>
             </div>
@@ -794,25 +833,28 @@
                 class="text-3xl md:text-5xl lg:text-6xl xl:text-8xl font-['Space_Grotesk'] font-bold mb-4 md:mb-8 lg:mb-10">
                 Let's Create Something<br>Exceptional.</h2>
 
-            <a href="mailto:hello@solomonolad.com"
-                class="magnetic-wrap group relative inline-flex items-center justify-center px-6 md:px-8 lg:px-12 py-3 md:py-4 lg:py-5 overflow-hidden font-['Space_Grotesk'] font-bold tracking-tighter text-white bg-transparent border border-white rounded-none transition-all duration-300 hover:bg-white hover:text-black">
+            <a href="mailto:primebusiness54@gmail.com"
+                class="magnetic-wrap group relative inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 lg:px-12 lg:py-5 overflow-hidden font-['Space_Grotesk'] font-bold tracking-tighter text-sm md:text-base lg:text-lg text-white bg-transparent border border-white rounded-none transition-all duration-300 hover:bg-white hover:text-black">
                 <span
                     class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
                 <span class="relative flex items-center gap-2 md:gap-3">
-                    INITIAL CONTACT <i data-lucide="send" class="w-4 h-4"></i>
+                    INITIAL CONTACT <i data-lucide="send" class="w-4 h-4 md:w-5 md:h-5"></i>
                 </span>
             </a>
 
             <!-- Social Buttons -->
             <div class="mt-8 md:mt-12 flex justify-center gap-4 md:gap-6">
-                <a href="#" class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
-                    <i data-lucide="youtube" class="w-5 h-5 md:w-6 md:h-6"></i>
+                <a href="https://youtube.com/@solomonolad?si=pijKi0NppM0LZKay" target="_blank"
+                    class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
+                    <i data-lucide="youtube" class="w-6 h-6 md:w-8 md:h-8"></i>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
-                    <i data-lucide="linkedin" class="w-5 h-5 md:w-6 md:h-6"></i>
+                <a href="https://ng.linkedin.com/in/solomon-olad-a5aa76306" target="_blank"
+                    class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
+                    <i data-lucide="linkedin" class="w-6 h-6 md:w-8 md:h-8"></i>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
-                    <i data-lucide="instagram" class="w-5 h-5 md:w-6 md:h-6"></i>
+                <a href="https://www.instagram.com/realsolomonolad/" target="_blank"
+                    class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
+                    <i data-lucide="instagram" class="w-6 h-6 md:w-8 md:h-8"></i>
                 </a>
             </div>
         </div>
@@ -829,7 +871,7 @@
         lucide.createIcons();
 
         // Register GSAP Plugins
-        gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
         // Mobile Menu Functionality
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -1166,7 +1208,10 @@
                     if (target) {
                         gsap.to(window, {
                             duration: 1.5,
-                            scrollTo: target,
+                            scrollTo: {
+                                y: target,
+                                autoKill: false
+                            },
                             ease: 'power3.inOut'
                         });
                     }
