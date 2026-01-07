@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solomon Olad | Creative Technologist</title>
+    
+    <!-- Fonts: Space Grotesk & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0F1115',
+                        surface: '#181B21',
+                        text: '#F5F6F7',
+                        accent: '#0A8BC9',
+                        accentHover: '#0da0e6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    spacing: {
+                        '128': '32rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Styles -->
+    <style>
+        body {
+            background-color: #0F1115;
+            color: #F5F6F7;
+            overflow-x: hidden;
+            cursor: none; /* Custom cursor */
+        }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #F5F6F7;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(245, 246, 247, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        /* Typography */
+        .hero-text {
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+        }
+        
+        .fluid-text {
+            font-size: clamp(3rem, 12vw, 10rem);
+        }
+
+        .char {
+            display: inline-block;
+            transform-origin: 50% 100%;
+        }
+
+        /* Utilities */
+        .clip-image {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Magnetic Button Area */
+        .magnetic-wrap {
+            display: inline-block;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-white">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navigation (Blossoms in) -->
+    <nav class="fixed top-0 left-0 w-full p-6 md:p-10 flex justify-between items-center z-50 mix-blend-difference text-white opacity-0 scale-0" id="main-nav">
+        <div class="text-lg font-display font-bold tracking-tighter">SOLOMON.</div>
+        <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide">
+            <a href="#about" class="hover:text-accent transition-colors">About</a>
+            <a href="#focus" class="hover:text-accent transition-colors">Focus</a>
+            <a href="#work" class="hover:text-accent transition-colors">Work</a>
+            <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
+        </div>
+        <button class="md:hidden text-white">
+            <i data-lucide="menu"></i>
+        </button>
+    </nav>
+
+    <!-- Social Links (Blossoms in) -->
+    <div class="fixed bottom-10 left-6 md:left-10 z-40 flex flex-col gap-4 opacity-0 translate-y-10" id="social-links">
+        <a href="#" class="text-gray-400 hover:text-accent transition-colors"><i data-lucide="twitter"></i></a>
+        <a href="#" class="text-gray-400 hover:text-accent transition-colors"><i data-lucide="linkedin"></i></a>
+        <a href="#" class="text-gray-400 hover:text-accent transition-colors"><i data-lucide="instagram"></i></a>
+        <div class="w-px h-10 bg-gray-800 mt-2"></div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="fixed bottom-10 right-6 md:right-10 z-40 opacity-0 translate-y-10" id="scroll-indicator">
+        <div class="flex flex-col items-center gap-2">
+            <span class="text-[10px] tracking-widest uppercase text-gray-500 rotate-90 origin-center translate-y-4">Scroll</span>
+            <div class="w-px h-12 bg-gray-700 relative overflow-hidden">
+                <div class="w-full h-1/2 bg-accent absolute top-0 animate-[bounce_2s_infinite]"></div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- PHASE 1: HERO SECTION -->
+        <section id="hero" class="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-background">
+            <div class="absolute inset-0 z-0">
+                <!-- Abstract Background Glow -->
+                <div class="absolute top-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-accent/5 rounded-full blur-[120px]"></div>
+                <div class="absolute bottom-[-20%] left-[-10%] w-[40vw] h-[40vw] bg-purple-900/5 rounded-full blur-[100px]"></div>
+            </div>
+
+            <div class="z-10 text-center mix-blend-screen relative">
+                <p class="text-accent font-sans tracking-[0.3em] text-sm md:text-base mb-4 opacity-0" id="hero-subtitle">I AM</p>
+                <h1 class="hero-text fluid-text font-display font-bold tracking-tighter">
+                    <span class="split-text text-accent block">SOLOMON</span>
+                    <span class="split-text text-white block">OLAD</span>
+                </h1>
+                <p class="mt-6 text-gray-400 font-sans font-light tracking-wide max-w-md mx-auto opacity-0" id="hero-role">
+                    Designer. Strategist. Creative Partner.
+                </p>
+            </div>
+        </section>
+
+        <!-- PHASE 2: ABOUT TRANSITION -->
+        <section id="about" class="relative min-h-screen py-24 md:py-32 bg-background flex items-center">
+            <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="md:col-span-5 md:col-start-2 relative z-10">
+                    <div class="overflow-hidden mb-4">
+                        <h2 class="text-4xl md:text-6xl font-display font-bold leading-tight translate-y-full reveal-text">
+                            Building <span class="text-accent">Digital</span> <br> Realities.
+                        </h2>
+                    </div>
+                    <div class="w-20 h-1 bg-accent mb-8 origin-left scale-x-0 reveal-bar"></div>
+                    <p class="text-gray-400 text-lg md:text-xl leading-relaxed font-light">
+                        I’m a versatile designer and entrepreneur building skills at the intersection of brand strategy and creative engineering. I don't just design websites; I craft meaningful digital experiences that help businesses stand out in a crowded market.
+                    </p>
+                    <div class="mt-10 flex items-center gap-4 opacity-0 reveal-cta">
+                        <div class="w-12 h-12 rounded-full border border-gray-700 flex items-center justify-center hover:border-accent transition-colors cursor-pointer magnetic-wrap">
+                            <i data-lucide="arrow-down-right" class="text-white"></i>
+                        </div>
+                        <span class="text-sm tracking-widest text-gray-500 uppercase">Explore My Vision</span>
+                    </div>
+                </div>
+
+                <!-- Visual/Image Area -->
+                <div class="md:col-span-5 md:col-start-8 relative">
+                    <div class="relative aspect-[4/5] md:aspect-[3/4] bg-surface overflow-hidden clip-image parallax-img" data-speed="0.2">
+                        <!-- Placeholder for Solomon's Image/Design -->
+                        <img src="https://picsum.photos/seed/solomon/600/800" alt="Solomon Olad" class="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-700 ease-out transform scale-110 hover:scale-100">
+                        <div class="absolute inset-0 bg-accent/10 mix-blend-overlay"></div>
+                    </div>
+                    <!-- Decorative floating elements -->
+                    <div class="absolute -bottom-10 -left-10 bg-surface p-6 border-l-2 border-accent hidden md:block float-card">
+                        <p class="font-display text-3xl font-bold text-white">5+</p>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest">Years Exp.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHASE 3: FOCUS AREAS (Horizontal Pin) -->
+        <section id="focus" class="relative py-24 bg-surface overflow-hidden">
+            <div class="container mx-auto px-6 mb-16 flex justify-between items-end">
+                <h2 class="text-4xl md:text-5xl font-display font-bold">Core Focus</h2>
+                <div class="hidden md:block text-gray-500 text-sm">Drag or Scroll to Explore</div>
+            </div>
+            
+            <!-- Horizontal Scroll Wrapper -->
+            <div class="focus-wrapper">
+                <div class="focus-track flex gap-8 md:gap-16 pl-6 md:pl-[10vw] pr-[20vw]">
+                    
+                    <!-- Card 1 -->
+                    <div class="focus-card w-[80vw] md:w-[30vw] h-[60vh] bg-background border border-gray-800 relative p-8 flex flex-col justify-end group transition-transform duration-500">
+                        <div class="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-colors duration-500 z-0"></div>
+                        <div class="z-10 relative transform transition-transform duration-500 group-hover:-translate-y-4">
+                            <div class="w-16 h-16 rounded-full bg-surface flex items-center justify-center mb-6 border border-gray-800 text-accent group-hover:scale-110 transition-transform">
+                                <i data-lucide="briefcase" size="32"></i>
+                            </div>
+                            <h3 class="text-3xl font-display font-bold mb-2 group-hover:text-accent transition-colors">Entrepreneurship</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75 transform translate-y-4 group-hover:translate-y-0">
+                                Building scalable ventures from the ground up. Focus on MVP development and market validation strategies.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="focus-card w-[80vw] md:w-[30vw] h-[60vh] bg-background border border-gray-800 relative p-8 flex flex-col justify-end group transition-transform duration-500">
+                        <div class="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-colors duration-500 z-0"></div>
+                        <div class="z-10 relative transform transition-transform duration-500 group-hover:-translate-y-4">
+                            <div class="w-16 h-16 rounded-full bg-surface flex items-center justify-center mb-6 border border-gray-800 text-accent group-hover:scale-110 transition-transform">
+                                <i data-lucide="bar-chart-2" size="32"></i>
+                            </div>
+                            <h3 class="text-3xl font-display font-bold mb-2 group-hover:text-accent transition-colors">Trading & Finance</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75 transform translate-y-4 group-hover:translate-y-0">
+                                Analytical approach to markets. Developing algorithmic strategies and financial modeling for long-term growth.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="focus-card w-[80vw] md:w-[30vw] h-[60vh] bg-background border border-gray-800 relative p-8 flex flex-col justify-end group transition-transform duration-500">
+                        <div class="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-colors duration-500 z-0"></div>
+                        <div class="z-10 relative transform transition-transform duration-500 group-hover:-translate-y-4">
+                            <div class="w-16 h-16 rounded-full bg-surface flex items-center justify-center mb-6 border border-gray-800 text-accent group-hover:scale-110 transition-transform">
+                                <i data-lucide="users" size="32"></i>
+                            </div>
+                            <h3 class="text-3xl font-display font-bold mb-2 group-hover:text-accent transition-colors">Networking</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75 transform translate-y-4 group-hover:translate-y-0">
+                                Connecting visionaries. Creating ecosystems where ideas cross-pollinate to generate massive value.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PHASE 4: SKILLS & PURPOSE (Data Layer) -->
+        <section id="skills" class="relative py-24 md:py-32 bg-background">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                    <!-- Skills List -->
+                    <div>
+                        <h3 class="text-accent text-sm tracking-widest uppercase mb-8 font-bold">Technical Proficiency</h3>
+                        <ul class="space-y-1 text-4xl md:text-5xl font-display font-bold text-gray-700 leading-none">
+                            <li class="skill-item magnetic-wrap cursor-pointer hover:text-white transition-colors duration-300">
+                                Frontend Dev <i data-lucide="arrow-right" class="inline-block w-8 h-8 ml-2 opacity-0 -translate-x-4 transition-all"></i>
+                            </li>
+                            <li class="skill-item magnetic-wrap cursor-pointer hover:text-white transition-colors duration-300">
+                                UI/UX Design <i data-lucide="arrow-right" class="inline-block w-8 h-8 ml-2 opacity-0 -translate-x-4 transition-all"></i>
+                            </li>
+                            <li class="skill-item magnetic-wrap cursor-pointer hover:text-white transition-colors duration-300">
+                                Brand Strategy <i data-lucide="arrow-right" class="inline-block w-8 h-8 ml-2 opacity-0 -translate-x-4 transition-all"></i>
+                            </li>
+                            <li class="skill-item magnetic-wrap cursor-pointer hover:text-white transition-colors duration-300">
+                                Motion Graphics <i data-lucide="arrow-right" class="inline-block w-8 h-8 ml-2 opacity-0 -translate-x-4 transition-all"></i>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Purpose Statement -->
+                    <div class="relative">
+                        <div class="sticky top-32">
+                            <h4 class="text-2xl md:text-3xl font-display font-light leading-snug text-gray-300">
+                                "I bridge the gap between <span class="text-white font-medium">aesthetic vision</span> and <span class="text-accent font-medium">technical execution</span>. My purpose is to deliver digital products that don't just function—they perform."
+                            </h4>
+                            <div class="mt-8 flex flex-wrap gap-3">
+                                <span class="px-4 py-2 border border-gray-800 rounded-full text-xs text-gray-400">Figma</span>
+                                <span class="px-4 py-2 border border-gray-800 rounded-full text-xs text-gray-400">React</span>
+                                <span class="px-4 py-2 border border-gray-800 rounded-full text-xs text-gray-400">GSAP</span>
+                                <span class="px-4 py-2 border border-gray-800 rounded-full text-xs text-gray-400">WebGL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHASE 5: CONTACT (Grand Finale) -->
+        <section id="contact" class="relative h-screen flex flex-col justify-center items-center overflow-hidden bg-black">
+            <!-- Massive Background Text -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-10 select-none">
+                <h1 class="text-[15vw] font-display font-bold text-white tracking-tighter text-center leading-none scale-150" id="bg-connect">
+                    CONNECT
+                </h1>
+            </div>
+
+            <div class="z-10 text-center mix-blend-difference">
+                <p class="text-accent tracking-[0.2em] uppercase mb-6 text-sm md:text-base animate-pulse">Ready to start?</p>
+                <h2 class="text-5xl md:text-8xl font-display font-bold mb-10">Let's Create Something<br>Exceptional.</h2>
+                
+                <a href="mailto:hello@solomonolad.com" class="magnetic-wrap group relative inline-flex items-center justify-center px-12 py-5 overflow-hidden font-display font-bold tracking-tighter text-white bg-transparent border border-white rounded-none transition-all duration-300 hover:bg-white hover:text-black">
+                    <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                    <span class="relative flex items-center gap-3">
+                        INITIAL CONTACT <i data-lucide="send" class="w-4 h-4"></i>
+                    </span>
+                </a>
+            </div>
+
+            <footer class="absolute bottom-6 w-full text-center text-gray-600 text-xs tracking-widest uppercase">
+                &copy; 2023 Solomon Olad. All Rights Reserved.
+            </footer>
+        </section>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <script>
+        // --- 1. UTILITIES ---
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Initialize Lenis (Smooth Scroll)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Register GSAP Plugins
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Text Splitter (Mimics SplitText without license)
+        function splitTextToSpans(element) {
+            const text = element.innerText;
+            element.innerHTML = '';
+            text.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.innerText = char;
+                span.className = 'char';
+                if(char === ' ') span.style.width = '0.3em'; // Preserve spacing
+                element.appendChild(span);
+            });
+            return element.querySelectorAll('.char');
+        }
+
+        // --- 2. CURSOR LOGIC ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Magnetic Effect Helper
+        document.querySelectorAll('.magnetic-wrap').forEach(wrap => {
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(wrap, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+                
+                // Show icon inside list items
+                const icon = wrap.querySelector('i');
+                if(icon) {
+                    gsap.to(icon, { x: 0, opacity: 1, duration: 0.2 });
+                }
+                
+                // Cursor grow
+                cursorOutline.style.width = '60px';
+                cursorOutline.style.height = '60px';
+                cursorOutline.style.backgroundColor = 'rgba(255,255,255,0.1)';
+            });
+
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(wrap, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+
+                const icon = wrap.querySelector('i');
+                if(icon) {
+                    gsap.to(icon, { x: -16, opacity: 0, duration: 0.2 });
+                }
+
+                // Cursor reset
+                cursorOutline.style.width = '40px';
+                cursorOutline.style.height = '40px';
+                cursorOutline.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // --- 3. ANIMATION TIMELINES ---
+
+        // PHASE 1: HERO REVEAL
+        const tlHero = gsap.timeline();
+
+        // Subtitle
+        tlHero.to("#hero-subtitle", {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out"
+        });
+
+        // Name Stagger
+        const nameLines = document.querySelectorAll('.split-text');
+        nameLines.forEach(line => {
+            const chars = splitTextToSpans(line);
+            tlHero.from(chars, {
+                y: 100,
+                opacity: 0,
+                stagger: 0.05,
+                duration: 0.8,
+                ease: "power4.out"
+            }, "-=0.5");
+        });
+
+        // Role & UI Blossom
+        tlHero.to("#hero-role", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out"
+        })
+        .to(["#main-nav", "#social-links", "#scroll-indicator"], {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: "elastic.out(1, 0.5)"
+        }, "-=0.5");
+
+        // PHASE 2: ABOUT SECTION
+        // Pin Hero and transition to About
+        // Note: Since we use Lenis, we use ScrollTrigger carefully.
+        
+        gsap.from("#about h2", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 70%",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.to("#about .reveal-bar", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 60%",
+            },
+            scaleX: 1,
+            duration: 1,
+            ease: "expo.out"
+        });
+
+        gsap.to("#about .reveal-cta", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 50%",
+            },
+            opacity: 1,
+            duration: 1,
+            delay: 0.5
+        });
+
+        // Parallax Image
+        gsap.to(".parallax-img", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1
+            },
+            y: -50, // Parallax effect
+            ease: "none"
+        });
+
+        // PHASE 3: FOCUS (Horizontal Scroll)
+        // Only do horizontal on Desktop (> 768px)
+        if (window.matchMedia("(min-width: 768px)").matches) {
+            let sections = gsap.utils.toArray(".focus-card");
+            let track = document.querySelector(".focus-track");
+            
+            // Calculate width needed
+            let scrollTween = gsap.to(sections, {
+                xPercent: -100 * (sections.length - 1),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#focus",
+                    pin: true,
+                    scrub: 1,
+                    snap: 1 / (sections.length - 1),
+                    end: () => "+=" + track.offsetWidth
+                }
+            });
+
+            // Skew Effect based on scroll velocity
+            ScrollTrigger.create({
+                trigger: "#focus",
+                onUpdate: (self) => {
+                    const skew = self.getVelocity() / 300;
+                    gsap.to(sections, {
+                        skewX: skew,
+                        overwrite: true,
+                        duration: 0.1,
+                        ease: "power2.out"
+                    });
+                }
+            });
+        }
+
+        // PHASE 4: SKILLS (Staggered Entry)
+        gsap.from(".skill-item", {
+            scrollTrigger: {
+                trigger: "#skills",
+                start: "top 70%",
+            },
+            x: 100,
+            opacity: 0.2,
+            stagger: 0.1,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        // PHASE 5: CONTACT (Bg Scale)
+        gsap.to("#bg-connect", {
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top bottom",
+                end: "top top",
+                scrub: true
+            },
+            scale: 1, // From 1.5 (CSS) to 1
+            opacity: 0.3,
+            ease: "none"
+        });
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            ScrollTrigger.refresh();
+        });
+
+    </script>
+</body>
+</html>

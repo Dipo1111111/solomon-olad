@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solomon Olad | Creative Technologist</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#0F1115',
+                        txt: '#F5F6F7',
+                        accent: '#0A8BC9',
+                        dark: '#08090b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0F1115;
+            color: #F5F6F7;
+            overflow-x: hidden; /* Critical for horizontal scroll sections */
+        }
+        
+        /* Hide Scrollbar for Cinematic feel */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: #0A8BC9; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(245, 246, 247, 0.5); transition: width 0.2s, height 0.2s; }
+        
+        /* Text Split Utilities */
+        .char-wrap { display: inline-block; overflow: hidden; vertical-align: bottom; }
+        .char { display: inline-block; transform: translateY(100%); }
+    </style>
+</head>
+<body class="cursor-none">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav class="fixed top-0 left-0 w-full p-8 flex justify-between items-start z-50 pointer-events-none mix-blend-difference">
+        <div class="nav-item opacity-0 transform -translate-y-4 pointer-events-auto">
+            <span class="font-display font-bold text-xl tracking-tighter">SO.</span>
+        </div>
+        <div class="nav-item opacity-0 transform -translate-y-4 flex gap-6 font-sans text-sm pointer-events-auto">
+            <a href="#about" class="hover:text-accent transition-colors">About</a>
+            <a href="#work" class="hover:text-accent transition-colors">Work</a>
+            <a href="#contact" class="hover:text-accent transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <section class="h-screen w-full flex flex-col justify-center items-center relative overflow-hidden" id="hero">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] bg-accent/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+                <div class="relative z-10 text-center">
+                    <p class="hero-pre text-accent font-mono text-sm tracking-[0.5em] mb-4 opacity-0">I AM</p>
+                    <h1 class="font-display text-[12vw] leading-[0.85] font-bold tracking-tighter uppercase mix-blend-overlay">
+                        <div class="overflow-hidden"><span class="hero-text-1 inline-block text-accent">SOLOMON</span></div>
+                        <div class="overflow-hidden"><span class="hero-text-2 inline-block text-white">OLAD</span></div>
+                    </h1>
+                </div>
+
+                <div class="hero-footer absolute bottom-10 flex flex-col items-center opacity-0">
+                    <span class="text-xs font-mono text-gray-400 mb-2">SCROLL TO EXPLORE</span>
+                    <div class="w-[1px] h-12 bg-gray-700 overflow-hidden">
+                        <div class="w-full h-full bg-accent animate-scroll-down"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="min-h-screen w-full flex items-center justify-center py-24 px-6 md:px-20 relative">
+                <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                    <div class="md:col-span-4 relative">
+                        <div class="w-full aspect-[3/4] bg-neutral-800 overflow-hidden relative group">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Solomon" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out scale-110 group-hover:scale-100">
+                            <div class="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-8">
+                        <h2 class="section-title text-4xl md:text-6xl font-display font-semibold mb-8 leading-tight">
+                            Crafting Meaningful <span class="text-accent">Digital Experiences.</span>
+                        </h2>
+                        <p class="about-text text-lg md:text-xl text-gray-400 font-light leading-relaxed max-w-2xl">
+                            I am an entrepreneur building skills in technology and design. I bridge the gap between abstract creativity and functional engineering, ensuring that every pixel serves a purpose and every interaction tells a story.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="focus-wrapper" class="h-screen w-full overflow-hidden bg-dark relative flex items-center">
+                <div class="absolute top-10 left-10 z-10">
+                    <span class="text-accent font-mono text-xs tracking-widest uppercase">// Focus Areas</span>
+                </div>
+                
+                <div id="focus-track" class="flex gap-0 h-full w-[300%]"> <div class="w-screen h-full flex-shrink-0 flex items-center justify-center p-10 border-r border-white/5 relative group">
+                        <div class="max-w-2xl text-center relative z-10">
+                            <span class="block text-[15rem] font-display font-bold text-white/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 group-hover:text-accent/10">01</span>
+                            <h3 class="text-6xl md:text-8xl font-display font-bold mb-6 relative">Entrepreneurship</h3>
+                            <p class="text-gray-400 text-xl">Building systems that scale. Turning rapid ideas into concrete business logic.</p>
+                        </div>
+                    </div>
+
+                    <div class="w-screen h-full flex-shrink-0 flex items-center justify-center p-10 border-r border-white/5 relative group">
+                        <div class="max-w-2xl text-center relative z-10">
+                            <span class="block text-[15rem] font-display font-bold text-white/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 group-hover:text-accent/10">02</span>
+                            <h3 class="text-6xl md:text-8xl font-display font-bold mb-6 relative">Trading</h3>
+                            <p class="text-gray-400 text-xl">Analyzing market psychology and data patterns to make calculated decisions.</p>
+                        </div>
+                    </div>
+
+                    <div class="w-screen h-full flex-shrink-0 flex items-center justify-center p-10 relative group">
+                        <div class="max-w-2xl text-center relative z-10">
+                            <span class="block text-[15rem] font-display font-bold text-white/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 group-hover:text-accent/10">03</span>
+                            <h3 class="text-6xl md:text-8xl font-display font-bold mb-6 relative">Networking</h3>
+                            <p class="text-gray-400 text-xl">Connecting with visionaries. Because the best products are built by teams, not individuals.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="py-32 px-6 md:px-20 bg-bg relative">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
+                    <div>
+                        <h2 class="text-5xl font-display font-bold mb-12">Technical <span class="text-accent">Arsenal</span></h2>
+                        <div class="flex flex-col gap-4">
+                            <div class="skill-item border-b border-gray-800 py-6 flex justify-between items-center group cursor-pointer">
+                                <span class="text-2xl font-light group-hover:pl-4 transition-all duration-300 ease-out">Frontend Development</span>
+                                <i data-lucide="code-2" class="text-accent opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            </div>
+                             <div class="skill-item border-b border-gray-800 py-6 flex justify-between items-center group cursor-pointer">
+                                <span class="text-2xl font-light group-hover:pl-4 transition-all duration-300 ease-out">Graphic Design</span>
+                                <i data-lucide="pen-tool" class="text-accent opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            </div>
+                             <div class="skill-item border-b border-gray-800 py-6 flex justify-between items-center group cursor-pointer">
+                                <span class="text-2xl font-light group-hover:pl-4 transition-all duration-300 ease-out">Motion Strategy</span>
+                                <i data-lucide="move" class="text-accent opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-accent font-mono text-sm tracking-widest mb-6">THE PURPOSE</h3>
+                        <p class="text-3xl leading-snug font-display text-gray-300">
+                            "To disrupt the ordinary. I combine the analytical mind of a trader with the creative soul of a designer to build digital assets that hold value."
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="h-[80vh] w-full flex flex-col justify-center items-center relative overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
+                    <h2 id="footer-text" class="text-[20vw] font-display font-bold whitespace-nowrap text-white">LET'S BUILD</h2>
+                </div>
+
+                <div class="z-10 text-center">
+                    <p class="text-gray-400 mb-8 font-mono">READY TO START A PROJECT?</p>
+                    <a href="mailto:solomon@example.com" class="group relative inline-flex items-center justify-center px-12 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-transparent border-2 border-white rounded-full hover:bg-white hover:text-black">
+                        <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-80 group-hover:h-80 opacity-10"></span>
+                        <span class="relative text-xl font-display">CONNECT WITH ME</span>
+                    </a>
+                </div>
+
+                <footer class="absolute bottom-8 w-full px-8 flex justify-between text-xs text-gray-600 font-mono uppercase">
+                    <div>© 2026 Solomon Olad</div>
+                    <div>Lagos — London</div>
+                </footer>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <script>
+        // 0. INIT LUCIDE ICONS
+        lucide.createIcons();
+
+        // 1. LENIS SMOOTH SCROLLING SETUP
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Connect Lenis to ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // 2. CUSTOM CURSOR LOGIC
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows instantly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline follows with delay
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Cursor Hover Effects
+        document.querySelectorAll('a, .skill-item').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.width = '60px';
+                cursorOutline.style.height = '60px';
+                cursorOutline.style.borderColor = '#0A8BC9';
+                cursorDot.style.backgroundColor = 'transparent';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.width = '40px';
+                cursorOutline.style.height = '40px';
+                cursorOutline.style.borderColor = 'rgba(245, 246, 247, 0.5)';
+                cursorDot.style.backgroundColor = '#0A8BC9';
+            });
+        });
+
+        // 3. TEXT SPLIT HELPER (Simulates SplitText)
+        function wrapCharacters(element) {
+            const text = element.innerText;
+            element.innerHTML = '';
+            [...text].forEach(char => {
+                const span = document.createElement('span');
+                span.classList.add('char-wrap');
+                span.innerHTML = `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`;
+                element.appendChild(span);
+            });
+        }
+
+        // 4. ANIMATION TIMELINES
+        
+        // --- PHASE 1: HERO REVEAL ---
+        const heroText1 = document.querySelector('.hero-text-1');
+        const heroText2 = document.querySelector('.hero-text-2');
+        
+        // Apply character wrapping for animation
+        wrapCharacters(heroText1);
+        wrapCharacters(heroText2);
+
+        const tlHero = gsap.timeline();
+
+        tlHero
+            .to('.hero-pre', { opacity: 1, duration: 1, ease: "power2.out" })
+            .to('.char', { y: 0, duration: 1.5, stagger: 0.05, ease: "power4.out" }, "-=0.5")
+            .to('.nav-item', { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power2.out" }, "-=1")
+            .to('.hero-footer', { opacity: 1, duration: 1 }, "-=0.5");
+
+        // --- PHASE 2: PARALLAX & ABOUT ---
+        gsap.to('#hero h1', {
+            yPercent: 50,
+            opacity: 0,
+            scrollTrigger: {
+                trigger: '#hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+
+        const aboutWords = document.querySelector('.about-text');
+        // Simple word split for about text
+        const words = aboutWords.innerText.split(' ');
+        aboutWords.innerHTML = words.map(word => `<span class="inline-block opacity-20 mr-2 transition-opacity duration-300 hover:opacity-100">${word}</span>`).join('');
+        
+        // Animate words opacity on scroll
+        gsap.to('.about-text span', {
+            opacity: 1,
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: '#about',
+                start: 'top 70%',
+                end: 'bottom 70%',
+                scrub: 1
+            }
+        });
+
+        // --- PHASE 3: HORIZONTAL SCROLL ---
+        const sections = gsap.utils.toArray('#focus-track > div');
+        
+        // We want the pinned section to scroll horizontally
+        gsap.to(sections, {
+            xPercent: -100 * (sections.length - 1),
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#focus-wrapper",
+                pin: true,
+                scrub: 1,
+                snap: 1 / (sections.length - 1),
+                end: () => "+=" + document.querySelector("#focus-track").offsetWidth
+            }
+        });
+
+        // --- PHASE 4: SKILLS REVEAL ---
+        gsap.from('.skill-item', {
+            x: 100,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: '.skill-item',
+                start: 'top 85%'
+            }
+        });
+
+        // --- PHASE 5: FOOTER PARALLAX ---
+        gsap.to('#footer-text', {
+            xPercent: -20,
+            scrollTrigger: {
+                trigger: '#contact',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+
+        // CSS Animation Keyframes injection for simple scroll indicator
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes scrollDown {
+                0% { transform: translateY(-100%); }
+                100% { transform: translateY(100%); }
+            }
+            .animate-scroll-down {
+                animation: scrollDown 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+
+INDEX CLAUDES HERO SECTION CODE BUT WITH INDEX GLM4 ICONS IN THE BOTTOM LEFT AND GLM 4 CURSOR CHANGE FEATURE, AND THE HERO 
+BG IS BLACK AND THE SUBTITLE TEXT AFTER THE HERO HEADER TEXT SHOULD BE " A ENTREPRENUER, TRADER AND DIGITAL CREATIVE" WITH A 
+TYPING TYPE ANIMATION WITH THE CURSOR ICON STUFF THAT SHOWS AND BLEEPS WHEN YOU ARE IN A TEXT EDITOR 
+
+THEN USE CLAUDES ANIMATION THAT HAPPENS WHEN YOU SCROLL WHEN ON THE HERO SECTION 
+
+
+NEXT IS THE ALEX GRAHAM WEB DESIGN INTRO ABOUT SECTION TALKS ABOUT 
+
+"I'm an entrepreneur building skills to create wealth across business, technology, and financial markets.
+
+My journey spans frontend development, graphic design, and trading psychology. I believe in the power of disciplined execution, continuous learning, and building systems that scale.
+
+Every project is an opportunity to push boundaries, challenge conventions, and create experiences that resonate.
+
+I’m a versatile designer and entrepreneur building skills at the intersection of brand strategy and creative engineering. I don't just design websites; I craft meaningful digital experiences that help businesses stand out in a crowded market.
+
+I'm at an early but intentional stage of my entrepreneurial journey.
+My focus is simple: learn real-world skills, apply them in practical environments, and compound progress over time. I'm not positioning myself as a guru or expert — I'm building, experimenting, and documenting.
+
+This site exists to give a clear picture of who I am, what I'm working on, and what I'm capable of." A COMBINATION OF
+EVERYTHING PICKING THE EBST PARTS FO ALL THE COPY
+
+NEXT SETION IS INDEX GEMINI 2 focus AREA SECTION
+
+NEXT IS THE MARQUEE FROM INDEX GEMINI
+
+NEXT SECTION IS TECHNICAL ARSENAL FROM INDEX CLAUDE BUT MAKE IT MORE SMOOTHER AND WORK BETTER ON SCROLL
+ AND THE TEXT "TECHNICAL ARSENAL" AND ITS SUBTITLES SHULD MOVE TO THE RIGHT AND THE OTHER TEXT "Frontend Development
+React, Next.js, Tailwind, GSAP, Three.js
+
+Graphic Design
+Figma, Adobe Suite, Brand Identity
+
+Trading Psychology
+Risk Management, Technical Analysis, Mindset
+
+Content Creation
+Copywriting, Storytelling, Personal Branding" SHOULD BE ON THE LEFT AND. BELOW THE TECHNICA ARSENAL SHOULD BE THE INDEX GEMINI 2
+ QUOTE THAT SAYS "To disrupt the ordinary. I combine the analytical mind of a trader with the creative soul of a designer to build digital assets that hold value."
+
+
+*THE ENTIRE WEBSITE EXCEPT THE HERO SECTION SHOULD USE A BLACK BACK GROUND
+
+USE INDEX GLM4 FULL FOOTER

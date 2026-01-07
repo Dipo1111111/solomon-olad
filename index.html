@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solomon Olad | Entrepreneur & Digital Creative</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000000;
+            color: #F5F6F7;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Custom Cursor (GLM4) */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #0A8BC9;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(10, 139, 201, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        /* Typing Animation - Mobile Responsive */
+        .typing-container {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 2px solid #0A8BC9;
+            white-space: nowrap;
+            animation: blink 0.75s step-end infinite;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            max-width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        @keyframes blink {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: #0A8BC9;
+            }
+        }
+
+        /* Hero Section Animations */
+        .char {
+            display: inline-block;
+            transform-origin: bottom center;
+        }
+
+        /* Focus Section Styles */
+        #focus-wrapper {
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .focus-track {
+            display: flex;
+            gap: 0;
+            height: 100%;
+            width: 300%;
+        }
+
+        .focus-screen {
+            width: 100vw;
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .focus-screen:last-child {
+            border-right: none;
+        }
+
+        .focus-number {
+            position: absolute;
+            font-size: 15rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.03);
+            z-index: 0;
+            transition: all 0.5s ease;
+        }
+
+        .focus-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .focus-screen:hover .focus-number {
+            color: rgba(10, 139, 201, 0.08);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .focus-number {
+                font-size: 10rem;
+            }
+
+            .focus-content h3 {
+                font-size: 3rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .focus-number {
+                font-size: 8rem;
+            }
+
+            .focus-content h3 {
+                font-size: 2.5rem !important;
+            }
+        }
+
+        /* FIX: Focus label positioning */
+        .focus-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 20;
+            font-size: 12px;
+        }
+
+        /* Service Section Styles */
+        .service-number {
+            font-size: clamp(6rem, 15vw, 12rem);
+            line-height: 0.85;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            -webkit-text-stroke: 1.5px rgba(245, 246, 247, 0.1);
+            -webkit-text-fill-color: transparent;
+            text-stroke: 1.5px rgba(245, 246, 247, 0.1);
+            text-fill-color: transparent;
+        }
+
+        .service-label {
+            color: #0A8BC9;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .service-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .service-desc {
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            line-height: 1.6;
+            color: rgba(245, 246, 247, 0.6);
+            font-weight: 300;
+        }
+
+        .service-item {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(245, 246, 247, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .service-item:hover {
+            border-bottom-color: rgba(10, 139, 201, 0.4);
+            padding-left: 0.75rem;
+        }
+
+        .service-item-number {
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            color: rgba(245, 246, 247, 0.4);
+            font-weight: 400;
+        }
+
+        .service-item:hover .service-item-number {
+            color: #0A8BC9;
+        }
+
+        .reveal-line {
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #0A8BC9, transparent);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 1rem;
+        }
+
+        .service-section.active .reveal-line {
+            width: 100%;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            position: relative;
+            padding: 80px 20px;
+        }
+
+        .quote-text {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            line-height: 1.3;
+            font-weight: 600;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Marquee Styles */
+        .marquee-section {
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .marquee-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .marquee-wrapper {
+            display: flex;
+            gap: 3rem;
+            width: max-content;
+        }
+
+        .marquee-item {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(143, 166, 178, 0.6);
+            opacity: 0.6;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* Mobile Navigation Fix */
+        @media (max-width: 768px) {
+
+            /* Hide social links on mobile */
+            #social-links {
+                display: none;
+            }
+
+            /* Fix navbar for mobile - make it solid */
+            #main-nav {
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(10px);
+                mix-blend-mode: normal;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            /* Typing text responsive fix */
+            .typing-text {
+                white-space: normal;
+                word-break: break-word;
+                text-align: center;
+                display: block;
+                border-right: none;
+                animation: none;
+            }
+
+            .typing-container {
+                display: block;
+            }
+
+            /* Hide cursor on mobile */
+            .cursor-dot,
+            .cursor-outline {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            /* Service section adjustments */
+            .service-number {
+                font-size: clamp(4rem, 12vw, 8rem);
+                -webkit-text-stroke: 1px rgba(245, 246, 247, 0.1);
+            }
+
+            .focus-number {
+                font-size: clamp(6rem, 15vw, 10rem);
+            }
+
+            .focus-content h3 {
+                font-size: 2.5rem !important;
+            }
+
+            .quote-text {
+                font-size: 1.5rem !important;
+            }
+
+            /* Marquee fix for mobile */
+            .marquee-item {
+                font-size: 1.5rem;
+                -webkit-text-stroke: 0.5px rgba(143, 166, 178, 0.6);
+            }
+
+            .marquee-wrapper {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .focus-number {
+                font-size: 5rem;
+            }
+
+            .focus-content h3 {
+                font-size: 2rem !important;
+            }
+
+            .service-number {
+                font-size: 3.5rem;
+            }
+
+            .service-title {
+                font-size: 1.8rem;
+            }
+
+            .marquee-item {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Desktop specific fixes */
+        @media (min-width: 769px) {
+            .focus-label {
+                top: 30px;
+                left: 30px;
+                z-index: 25;
+            }
+
+            /* Ensure focus section doesn't overlap with nav */
+            #focus-wrapper {
+                padding-top: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Custom Cursor (GLM4) - Hidden on mobile -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navigation (GLM4) - Fixed for mobile -->
+    <nav class="fixed top-0 left-0 w-full p-4 md:p-6 lg:p-10 flex justify-between items-center z-50 bg-black/0 md:mix-blend-difference text-white opacity-0 transition-all duration-300"
+        id="main-nav">
+        <div class="text-lg font-bold tracking-tighter">SOLOMON.</div>
+        <div class="hidden md:flex gap-6 lg:gap-8 text-sm font-medium tracking-wide">
+            <a href="#about" class="nav-link hover:text-[#0A8BC9] transition-colors">About</a>
+            <a href="#focus" class="nav-link hover:text-[#0A8BC9] transition-colors">Focus</a>
+            <a href="#technical" class="nav-link hover:text-[#0A8BC9] transition-colors">Technical</a>
+            <a href="#contact" class="nav-link hover:text-[#0A8BC9] transition-colors">Contact</a>
+        </div>
+        <button class="md:hidden text-white" id="mobile-menu-btn">
+            <i data-lucide="menu"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div class="fixed top-0 left-0 w-full h-0 bg-black z-40 overflow-hidden transition-all duration-300"
+        id="mobile-menu">
+        <div class="flex flex-col items-center justify-center h-full gap-8">
+            <a href="#about" class="text-2xl hover:text-[#0A8BC9] transition-colors">About</a>
+            <a href="#focus" class="text-2xl hover:text-[#0A8BC9] transition-colors">Focus</a>
+            <a href="#technical" class="text-2xl hover:text-[#0A8BC9] transition-colors">Technical</a>
+            <a href="#contact" class="text-2xl hover:text-[#0A8BC9] transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <!-- Social Links Bottom Left (GLM4) - Hidden on mobile -->
+    <div class="fixed bottom-10 left-6 md:left-10 z-40 hidden md:flex flex-col gap-4 opacity-0" id="social-links">
+        <a href="#" class="text-[#0A8BC9] hover:text-[#0da0e6] transition-colors"><i data-lucide="youtube"></i></a>
+        <a href="#" class="text-[#0A8BC9] hover:text-[#0da0e6] transition-colors"><i data-lucide="linkedin"></i></a>
+        <a href="#" class="text-[#0A8BC9] hover:text-[#0da0e6] transition-colors"><i data-lucide="instagram"></i></a>
+        <div class="w-px h-10 bg-gray-800 mt-2"></div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="hero"
+        class="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-black px-4">
+        <div class="z-10 text-center mix-blend-screen relative w-full max-w-6xl mx-auto">
+            <p class="text-[#0A8BC9] font-sans tracking-[0.3em] text-sm md:text-base mb-4" id="hero-subtitle">I AM</p>
+            <h1 class="font-['Space_Grotesk'] text-[clamp(2.5rem,10vw,8rem)] leading-[0.9] font-bold tracking-tighter opacity-0"
+                id="hero-name">
+                <span class="split-text text-[#0A8BC9] block" id="first-name">SOLOMON</span>
+                <span class="split-text text-white block" id="last-name">OLAD</span>
+            </h1>
+            <div class="mt-4 md:mt-8 font-sans font-light tracking-wide w-full">
+                <div class="typing-container">
+                    <span class="typing-text" id="typing-text"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="relative min-h-screen py-12 md:py-24 lg:py-32 bg-black flex items-center">
+        <div
+            class="container mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
+            <!-- Text Content -->
+            <div class="lg:col-span-7 relative z-10">
+                <div class="overflow-hidden mb-4">
+                    <h2
+                        class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-['Space_Grotesk'] font-bold leading-tight">
+                        Building <span class="text-[#0A8BC9]">Digital</span> <br class="hidden md:block"> Realities.
+                    </h2>
+                </div>
+                <div class="w-16 md:w-20 h-1 bg-[#0A8BC9] mb-6 md:mb-8"></div>
+                <div class="space-y-4 md:space-y-6">
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+                        <span class="text-[#0A8BC9] font-medium">I am Solomon Olad, originally Solomon Igbojuwo,</span>
+                        an entrepreneur building skills to create wealth across business, technology, and financial
+                        markets.
+                    </p>
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+                        My journey spans <span class="text-white font-medium">frontend development, graphic design, and
+                            trading</span>. I believe in the power of disciplined execution, continuous learning, and
+                        building systems that scale.
+                    </p>
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+                        Every project is an opportunity to push boundaries, challenge conventions, and create
+                        experiences that resonate.
+                    </p>
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+                        I'm a versatile designer and entrepreneur building skills at the intersection of <span
+                            class="text-[#0A8BC9] font-medium">brand strategy and creative engineering</span>. I don't
+                        just design websites; I craft meaningful digital experiences that help businesses stand out in a
+                        crowded market.
+                    </p>
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+                        I'm at an early but intentional stage of my entrepreneurial journey. My focus is simple: <span
+                            class="text-white font-medium">learn real-world skills, apply them in practical
+                            environments, and compound progress over time</span>. I'm not positioning myself as a guru
+                        or expert — I'm building, experimenting, and documenting.
+                    </p>
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+                        This site exists to give a clear picture of who I am, what I'm working on, and what I'm capable
+                        of.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Image Area -->
+            <div class="lg:col-span-5 relative mt-8 lg:mt-0">
+                <div class="relative aspect-[3/4] bg-[#181B21] overflow-hidden rounded-lg">
+                    <!-- Replace this src with your actual image file -->
+                    <img src="solomon.JPG" alt="Solomon Olad" class="object-cover w-full h-full">
+                    <div class="absolute inset-0 bg-[#0A8BC9]/5 mix-blend-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOCUS AREAS SECTION -->
+    <section id="focus-wrapper" class="h-screen w-full overflow-hidden bg-black relative flex items-center">
+        <div class="absolute top-10 left-6 md:left-10 z-10">
+            <span class="text-[#0A8BC9] font-mono text-xs tracking-widest uppercase">// Focus Areas</span>
+        </div>
+
+        <div id="focus-track" class="focus-track">
+            <!-- Screen 1 -->
+            <div class="focus-screen">
+                <div class="focus-number">01</div>
+                <div class="focus-content">
+                    <h3 class="text-4xl md:text-6xl lg:text-8xl font-['Space_Grotesk'] font-bold mb-6 relative">
+                        Entrepreneurship</h3>
+                    <p class="text-gray-400 text-lg md:text-xl">Building systems that scale. Turning rapid ideas into
+                        concrete business logic.</p>
+                </div>
+            </div>
+
+            <!-- Screen 2 -->
+            <div class="focus-screen">
+                <div class="focus-number">02</div>
+                <div class="focus-content">
+                    <h3 class="text-4xl md:text-6xl lg:text-8xl font-['Space_Grotesk'] font-bold mb-6 relative">Trading
+                    </h3>
+                    <p class="text-gray-400 text-lg md:text-xl">Analyzing market psychology and data patterns to make
+                        calculated decisions.</p>
+                </div>
+            </div>
+
+            <!-- Screen 3 -->
+            <div class="focus-screen">
+                <div class="focus-number">03</div>
+                <div class="focus-content">
+                    <h3 class="text-4xl md:text-6xl lg:text-8xl font-['Space_Grotesk'] font-bold mb-6 relative">
+                        Networking</h3>
+                    <p class="text-gray-400 text-lg md:text-xl">Connecting with visionaries. Because the best products
+                        are built by teams, not individuals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE SECTION -->
+    <div class="marquee-section">
+        <div class="marquee-container">
+            <div class="marquee-wrapper">
+                <div class="marquee-item">Frontend Development</div>
+                <div class="marquee-item">Graphic Design</div>
+                <div class="marquee-item">Trading</div>
+                <div class="marquee-item">Video Editing</div>
+                <div class="marquee-item">Content Creation</div>
+                <div class="marquee-item">Personal Branding</div>
+                <div class="marquee-item">Frontend Development</div>
+                <div class="marquee-item">Graphic Design</div>
+                <div class="marquee-item">Trading</div>
+                <div class="marquee-item">Video Editing</div>
+                <div class="marquee-item">Content Creation</div>
+                <div class="marquee-item">Personal Branding</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STANDALONE QUOTE SECTION -->
+    <section class="quote-section bg-black">
+        <div class="container mx-auto px-4">
+            <div class="quote-text">
+                <span class="text-[#0A8BC9]">"To disrupt the ordinary.</span> I combine the analytical mind of a trader
+                with the creative soul of a designer to build <span class="text-white">digital assets that hold
+                    value."</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL ARSENAL SECTION (New Structure) -->
+    <section id="technical" class="relative py-12 md:py-24 lg:py-32 bg-black">
+        <div class="container mx-auto px-4">
+            <!-- Service 01 - Frontend Development -->
+            <div class="service-section min-h-[70vh] md:min-h-screen flex items-center py-12 md:py-24" id="service-01">
+                <div class="max-w-screen-2xl mx-auto w-full">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-16">
+                        <!-- Left Side - Number -->
+                        <div class="lg:col-span-4 flex items-start">
+                            <div class="service-number-wrap">
+                                <div class="service-number">01</div>
+                            </div>
+                        </div>
+
+                        <!-- Right Side - Content -->
+                        <div class="lg:col-span-8 space-y-6 md:space-y-8">
+                            <div class="space-y-4">
+                                <div class="service-label">Development</div>
+                                <h2 class="service-title">Frontend Development</h2>
+                                <div class="reveal-line"></div>
+                                <p class="service-desc mt-4 md:mt-6">
+                                    Building blazing-fast, pixel-perfect web applications with modern frameworks and
+                                    cutting-edge animation techniques.
+                                </p>
+                            </div>
+
+                            <!-- Service Items -->
+                            <div class="mt-8 md:mt-12 space-y-0">
+                                <div class="service-item flex justify-between items-center">
+                                    <span>React, Next.js</span>
+                                    <span class="service-item-number">01</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Tailwind CSS</span>
+                                    <span class="service-item-number">02</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>GSAP Animations</span>
+                                    <span class="service-item-number">03</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Three.js & WebGL</span>
+                                    <span class="service-item-number">04</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 02 - Graphic Design -->
+            <div class="service-section min-h-[70vh] md:min-h-screen flex items-center py-12 md:py-24" id="service-02">
+                <div class="max-w-screen-2xl mx-auto w-full">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-16">
+                        <div class="lg:col-span-4 flex items-start">
+                            <div class="service-number-wrap">
+                                <div class="service-number">02</div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-8 space-y-6 md:space-y-8">
+                            <div class="space-y-4">
+                                <div class="service-label">Design</div>
+                                <h2 class="service-title">Graphic Design</h2>
+                                <div class="reveal-line"></div>
+                                <p class="service-desc mt-4 md:mt-6">
+                                    Crafting memorable visual identities that resonate with audiences. From concept to
+                                    execution, every design tells a story.
+                                </p>
+                            </div>
+
+                            <div class="mt-8 md:mt-12 space-y-0">
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Figma, Adobe Suite</span>
+                                    <span class="service-item-number">01</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Brand Identity</span>
+                                    <span class="service-item-number">02</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>UI/UX Design</span>
+                                    <span class="service-item-number">03</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Video Editing</span>
+                                    <span class="service-item-number">04</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 03 - Trading -->
+            <div class="service-section min-h-[70vh] md:min-h-screen flex items-center py-12 md:py-24" id="service-03">
+                <div class="max-w-screen-2xl mx-auto w-full">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-16">
+                        <div class="lg:col-span-4 flex items-start">
+                            <div class="service-number-wrap">
+                                <div class="service-number">03</div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-8 space-y-6 md:space-y-8">
+                            <div class="space-y-4">
+                                <div class="service-label">Financial</div>
+                                <h2 class="service-title">Trading</h2>
+                                <div class="reveal-line"></div>
+                                <p class="service-desc mt-4 md:mt-6">
+                                    Mastering financial markets through disciplined analysis, psychological resilience,
+                                    and systematic risk management.
+                                </p>
+                            </div>
+
+                            <div class="mt-8 md:mt-12 space-y-0">
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Risk Management</span>
+                                    <span class="service-item-number">01</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Technical Analysis</span>
+                                    <span class="service-item-number">02</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Trading Mindset</span>
+                                    <span class="service-item-number">03</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Market Research</span>
+                                    <span class="service-item-number">04</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 04 - Content Creation -->
+            <div class="service-section min-h-[70vh] md:min-h-screen flex items-center py-12 md:py-24" id="service-04">
+                <div class="max-w-screen-2xl mx-auto w-full">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-16">
+                        <div class="lg:col-span-4 flex items-start">
+                            <div class="service-number-wrap">
+                                <div class="service-number">04</div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-8 space-y-6 md:space-y-8">
+                            <div class="space-y-4">
+                                <div class="service-label">Content</div>
+                                <h2 class="service-title">Content Creation</h2>
+                                <div class="reveal-line"></div>
+                                <p class="service-desc mt-4 md:mt-6">
+                                    Crafting compelling narratives and strategic content that engages audiences and
+                                    builds authority across digital platforms.
+                                </p>
+                            </div>
+
+                            <div class="mt-8 md:mt-12 space-y-0">
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Copywriting</span>
+                                    <span class="service-item-number">01</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Storytelling</span>
+                                    <span class="service-item-number">02</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Personal Branding</span>
+                                    <span class="service-item-number">03</span>
+                                </div>
+                                <div class="service-item flex justify-between items-center">
+                                    <span>Content Strategy</span>
+                                    <span class="service-item-number">04</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact"
+        class="relative h-[90vh] md:h-screen flex flex-col justify-center items-center overflow-hidden bg-black px-4">
+        <!-- Massive Background Text -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-10 select-none">
+            <h1 class="text-[10vw] md:text-[15vw] font-['Space_Grotesk'] font-bold text-white tracking-tighter text-center leading-none scale-150"
+                id="bg-connect">
+                CONNECT
+            </h1>
+        </div>
+
+        <div class="z-10 text-center mix-blend-difference w-full max-w-4xl mx-auto">
+            <p class="text-[#0A8BC9] tracking-[0.2em] uppercase mb-4 md:mb-6 text-xs md:text-sm animate-pulse">Ready to
+                start?</p>
+            <h2
+                class="text-3xl md:text-5xl lg:text-6xl xl:text-8xl font-['Space_Grotesk'] font-bold mb-4 md:mb-8 lg:mb-10">
+                Let's Create Something<br>Exceptional.</h2>
+
+            <a href="mailto:hello@solomonolad.com"
+                class="magnetic-wrap group relative inline-flex items-center justify-center px-6 md:px-8 lg:px-12 py-3 md:py-4 lg:py-5 overflow-hidden font-['Space_Grotesk'] font-bold tracking-tighter text-white bg-transparent border border-white rounded-none transition-all duration-300 hover:bg-white hover:text-black">
+                <span
+                    class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                <span class="relative flex items-center gap-2 md:gap-3">
+                    INITIAL CONTACT <i data-lucide="send" class="w-4 h-4"></i>
+                </span>
+            </a>
+
+            <!-- Social Buttons -->
+            <div class="mt-8 md:mt-12 flex justify-center gap-4 md:gap-6">
+                <a href="#" class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
+                    <i data-lucide="youtube" class="w-5 h-5 md:w-6 md:h-6"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
+                    <i data-lucide="linkedin" class="w-5 h-5 md:w-6 md:h-6"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-[#0A8BC9] transition-colors transform hover:scale-110">
+                    <i data-lucide="instagram" class="w-5 h-5 md:w-6 md:h-6"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- GLM4 FOOTER -->
+        <footer
+            class="absolute bottom-4 md:bottom-6 w-full text-center text-gray-600 text-xs tracking-widest uppercase px-4">
+            &copy; 2026 Solomon Olad. All Rights Reserved.
+        </footer>
+    </section>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Register GSAP Plugins
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                if (mobileMenu.style.height === '100vh') {
+                    mobileMenu.style.height = '0';
+                    mobileMenuBtn.innerHTML = '<i data-lucide="menu"></i>';
+                } else {
+                    mobileMenu.style.height = '100vh';
+                    mobileMenuBtn.innerHTML = '<i data-lucide="x"></i>';
+                }
+                lucide.createIcons();
+            });
+
+            // Close menu when clicking links
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.style.height = '0';
+                    mobileMenuBtn.innerHTML = '<i data-lucide="menu"></i>';
+                    lucide.createIcons();
+                });
+            });
+        }
+
+        // --- CURSOR LOGIC (GLM4) - Only on desktop ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+
+            // Cursor Hover Effects
+            document.querySelectorAll('a, .service-item').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.style.width = '60px';
+                    cursorOutline.style.height = '60px';
+                    cursorOutline.style.borderColor = '#0A8BC9';
+                    cursorDot.style.backgroundColor = 'transparent';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.style.width = '40px';
+                    cursorOutline.style.height = '40px';
+                    cursorOutline.style.borderColor = 'rgba(10, 139, 201, 0.5)';
+                    cursorDot.style.backgroundColor = '#0A8BC9';
+                });
+            });
+        }
+
+        // --- TEXT SPLIT HELPER ---
+        function splitTextToSpans(element) {
+            const text = element.textContent;
+            element.innerHTML = '';
+            text.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                element.appendChild(span);
+            });
+        }
+
+        // --- TYPING ANIMATION - Responsive ---
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // --- INITIALIZE ANIMATIONS ---
+        window.addEventListener('load', () => {
+            // Hero Animation Timeline - FASTER TIMING
+            const tl = gsap.timeline();
+
+            // Show "I AM" immediately
+            tl.to('#hero-subtitle', {
+                opacity: 1,
+                duration: 0.5,
+                ease: 'power2.out'
+            })
+
+                // Show name after 1s with slide up effect
+                .to('#hero-name', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power4.out'
+                }, '+=0.5')
+
+                // Start typing animation with Inter font
+                .add(() => {
+                    typeWriter(document.getElementById('typing-text'), "AN ENTREPRENEUR, TRADER AND DIGITAL CREATIVE", 50);
+                }, '-=0.5')
+
+                // Show UI elements after 1.5s total
+                .to(['#main-nav', '#social-links'], {
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: 'power2.out'
+                }, '+=0.5');
+
+            // --- PARALLAX ON HERO ---
+            gsap.to('#hero h1', {
+                y: 100,
+                scrollTrigger: {
+                    trigger: '#hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 1
+                }
+            });
+
+            // --- ABOUT SECTION ANIMATIONS ---
+            gsap.from('#about h2', {
+                x: -100,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: '#about',
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    scrub: 1
+                }
+            });
+
+            // Animate about paragraphs
+            gsap.utils.toArray('#about p').forEach((p, i) => {
+                gsap.from(p, {
+                    y: 50,
+                    opacity: 0,
+                    scrollTrigger: {
+                        trigger: p,
+                        start: 'top 85%',
+                        end: 'top 60%',
+                        scrub: 1
+                    }
+                });
+            });
+
+            // --- FOCUS SECTION HORIZONTAL SCROLL ---
+            const sections = gsap.utils.toArray("#focus-track > .focus-screen");
+
+            if (window.matchMedia("(min-width: 768px)").matches) {
+                gsap.to(sections, {
+                    xPercent: -100 * (sections.length - 1),
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#focus-wrapper",
+                        pin: true,
+                        scrub: 1,
+                        snap: 1 / (sections.length - 1),
+                        end: () => "+=" + document.querySelector("#focus-track").offsetWidth
+                    }
+                });
+            }
+
+            // --- MARQUEE ANIMATION ---
+            const marqueeWrapper = document.querySelector('.marquee-wrapper');
+            if (marqueeWrapper) {
+                const marqueeWidth = marqueeWrapper.scrollWidth / 2;
+
+                gsap.to('.marquee-wrapper', {
+                    x: -marqueeWidth,
+                    duration: 20,
+                    repeat: -1,
+                    ease: "linear"
+                });
+            }
+
+            // --- SERVICE SECTION ANIMATIONS ---
+            const serviceSections = gsap.utils.toArray('.service-section');
+
+            serviceSections.forEach((section, index) => {
+                const number = section.querySelector('.service-number');
+                const label = section.querySelector('.service-label');
+                const title = section.querySelector('.service-title');
+                const desc = section.querySelector('.service-desc');
+                const items = section.querySelectorAll('.service-item');
+                const revealLine = section.querySelector('.reveal-line');
+
+                // Reset initial states
+                gsap.set([label, title, desc, ...items], {
+                    opacity: 0,
+                    y: 30
+                });
+
+                gsap.set(number, {
+                    opacity: 0,
+                    scale: 0.8
+                });
+
+                gsap.set(revealLine, {
+                    width: 0
+                });
+
+                // Number animation
+                gsap.to(number, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                        end: 'top 50%',
+                        toggleActions: 'play none none reverse',
+                        once: true
+                    }
+                });
+
+                // Content animation timeline
+                const contentTimeline = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 70%',
+                        end: 'top 40%',
+                        toggleActions: 'play none none reverse',
+                        once: true
+                    }
+                });
+
+                contentTimeline
+                    .to(label, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power2.out'
+                    })
+                    .to(title, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power2.out'
+                    }, '-=0.3')
+                    .to(desc, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power2.out'
+                    }, '-=0.3')
+                    .to(revealLine, {
+                        width: '100%',
+                        duration: 1.2,
+                        ease: 'power2.out'
+                    }, '-=0.5');
+
+                // Service items animation
+                gsap.to(items, {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.1,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 60%',
+                        end: 'top 30%',
+                        toggleActions: 'play none none reverse',
+                        once: true
+                    }
+                });
+
+                // Activate section class for reveal line
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: 'top 50%',
+                    onEnter: () => section.classList.add('active'),
+                    onLeaveBack: () => section.classList.remove('active')
+                });
+            });
+
+            // --- CONTACT SECTION ANIMATIONS ---
+            // Ensure content is visible on load, but keep the scroll y animation
+            gsap.set('#contact > .z-10 > *', { opacity: 1, y: 0 });
+            gsap.from('#contact > .z-10 > *', {
+                y: 80,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: '#contact',
+                    start: 'top 70%',
+                    end: 'top 40%',
+                    scrub: 1
+                }
+            });
+
+            // Background text parallax
+            gsap.to('#bg-connect', {
+                scrollTrigger: {
+                    trigger: '#contact',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                },
+                scale: 1,
+                opacity: 0.3,
+                ease: "none"
+            });
+
+            // Smooth scroll for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        gsap.to(window, {
+                            duration: 1.5,
+                            scrollTo: target,
+                            ease: 'power3.inOut'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            ScrollTrigger.refresh();
+        });
+    </script>
+</body>
+
+</html>

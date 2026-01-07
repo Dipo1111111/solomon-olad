@@ -1,0 +1,1445 @@
+<!-- <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solomon Olad | Entrepreneur & Builder</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #0F1115;
+            --text: #F5F6F7;
+            --accent: #5F7C8A;
+            --accent-soft: #8FA6B2;
+            --grid-line: rgba(245, 246, 247, 0.1);
+            --font-head: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            opacity: 0; /* Hidden initially for loader */
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--text);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        
+        body:hover .cursor {
+            background-color: var(--text);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            cursor: none; /* Hide default cursor */
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-head);
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        p {
+            font-weight: 300;
+            line-height: 1.6;
+            color: #d1d1d1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--text);
+            transform: translateX(-101%);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .nav-link:hover::after {
+            transform: translateX(0);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-content {
+            margin-top: 60px;
+        }
+
+        .hero-label {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            margin-bottom: 30px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title span {
+            display: block; /* For line-by-line reveal */
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            font-size: 1.25rem;
+            color: var(--accent-soft);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.5;
+        }
+
+        /* MARQUEE */
+        .marquee-section {
+            padding: 60px 0;
+            border-top: 1px solid var(--grid-line);
+            border-bottom: 1px solid var(--grid-line);
+            overflow: hidden;
+        }
+
+        .marquee-wrapper {
+            display: flex;
+            gap: 4rem;
+            width: max-content;
+        }
+
+        .marquee-item {
+            font-family: var(--font-head);
+            font-size: 4vw;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--accent-soft);
+            opacity: 0.6;
+            text-transform: uppercase;
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+        }
+
+        .section-header {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 90%;
+        }
+
+        /* FOCUS AREAS GRID */
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 80px;
+        }
+
+        .focus-card {
+            border: 1px solid var(--grid-line);
+            padding: 40px;
+            transition: background 0.4s ease;
+        }
+
+        .focus-card:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: var(--accent);
+        }
+
+        .focus-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .focus-card p {
+            font-size: 0.95rem;
+            color: var(--accent-soft);
+        }
+
+        /* SKILLS LIST */
+        .skills-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .skill-list {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .skill-item {
+            border-bottom: 1px solid var(--grid-line);
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            padding-left: 20px;
+            border-color: var(--text);
+        }
+
+        .skill-name {
+            font-family: var(--font-head);
+            font-size: 2rem;
+        }
+
+        .skill-arrow {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover .skill-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .contact h2 {
+            font-size: clamp(3rem, 6vw, 6rem);
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            padding: 20px 40px;
+            border: 1px solid var(--text);
+            color: var(--text);
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .cta-btn:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .social-links {
+            margin-top: 60px;
+            display: flex;
+            gap: 30px;
+        }
+
+        .social-link {
+            color: var(--accent-soft);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        footer {
+            padding: 40px 50px;
+            border-top: 1px solid var(--grid-line);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--accent-soft);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            .about { grid-template-columns: 1fr; }
+            .hero-title { font-size: 3rem; }
+            .marquee-item { font-size: 3rem; }
+            .skill-name { font-size: 1.5rem; }
+        }
+
+        /* Utility classes for GSAP */
+        .reveal-text { visibility: hidden; }
+        .line-wrap { overflow: hidden; display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="cursor"></div>
+
+    <nav>
+        <div class="logo">Solomon Olad.</div>
+        <div class="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero container">
+            <div class="hero-content">
+                <span class="hero-label reveal-text">Entrepreneur building skills, capital, and connections in public.</span>
+                <h1 class="hero-title">
+                    <div class="line-wrap"><span class="reveal-line">I’m Solomon Olad.</span></div>
+                    <div class="line-wrap"><span class="reveal-line" id="typewriter">Builder.</span></div>
+                </h1>
+                <p class="hero-desc reveal-text">
+                    An aspiring entrepreneur focused on building practical skills, documenting my journey, and creating opportunities through business, trading, and networking.
+                </p>
+            </div>
+            <div class="scroll-indicator">Scroll to Explore</div>
+        </section>
+
+        <div class="marquee-section">
+            <div class="marquee-wrapper">
+                <div class="marquee-item">Frontend Development</div>
+                <div class="marquee-item">Graphic Design</div>
+                <div class="marquee-item">Video Editing</div>
+                <div class="marquee-item">Personal Branding</div>
+                <div class="marquee-item">Innovation</div>
+                <div class="marquee-item">Frontend Development</div>
+                <div class="marquee-item">Graphic Design</div>
+                <div class="marquee-item">Video Editing</div>
+                <div class="marquee-item">Personal Branding</div>
+                <div class="marquee-item">Innovation</div>
+            </div>
+        </div>
+
+        <section id="about" class="container section-padding">
+            <div class="about">
+                <div class="section-header">01 — Identity</div>
+                <div class="about-text">
+                    <h2 class="reveal-scroll">I’m at an early but intentional stage of my entrepreneurial journey.</h2>
+                    <p class="reveal-scroll">My focus is simple: learn real-world skills, apply them in practical environments, and compound progress over time. I’m not positioning myself as a guru or expert — I’m building, experimenting, and documenting.</p>
+                    <p class="reveal-scroll">This site exists to give a clear picture of who I am, what I’m working on, and what I’m capable of.</p>
+                </div>
+            </div>
+
+            <div class="focus-grid">
+                <div class="focus-card reveal-card">
+                    <h3>Entrepreneurship</h3>
+                    <p>Learning how online businesses are built, positioned, and scaled through real execution.</p>
+                </div>
+                <div class="focus-card reveal-card">
+                    <h3>Trading</h3>
+                    <p>Developing discipline, capital awareness, and consistency as part of my journey.</p>
+                </div>
+                <div class="focus-card reveal-card">
+                    <h3>Networking</h3>
+                    <p>Building genuine relationships with entrepreneurs, creatives, and builders.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="container section-padding">
+            <div class="section-header" style="margin-bottom: 40px;">02 — Capabilities</div>
+            <div class="skills-section">
+                <div class="skill-list">
+                    <div class="skill-item reveal-item">
+                        <span class="skill-name">Frontend Development</span>
+                        <span class="skill-arrow">→</span>
+                    </div>
+                    <div class="skill-item reveal-item">
+                        <span class="skill-name">Graphic Design</span>
+                        <span class="skill-arrow">→</span>
+                    </div>
+                    <div class="skill-item reveal-item">
+                        <span class="skill-name">Video Editing</span>
+                        <span class="skill-arrow">→</span>
+                    </div>
+                    <div class="skill-item reveal-item">
+                        <span class="skill-name">Content & Personal Branding</span>
+                        <span class="skill-arrow">→</span>
+                    </div>
+                    <div class="skill-item reveal-item">
+                        <span class="skill-name">Creative Problem-Solving</span>
+                        <span class="skill-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container section-padding" style="text-align: center; border-top: 1px solid var(--grid-line);">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h3 style="font-size: 1.5rem; color: var(--text); margin-bottom: 20px;">Purpose</h3>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; color: var(--accent-soft); text-align: left;">
+                    <div style="flex: 1; min-width: 200px; padding: 20px;">• Professional digital presence</div>
+                    <div style="flex: 1; min-width: 200px; padding: 20px;">• Clear identity & positioning</div>
+                    <div style="flex: 1; min-width: 200px; padding: 20px;">• Networking & credibility</div>
+                    <div style="flex: 1; min-width: 200px; padding: 20px;">• Long-term documentation</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container section-padding contact">
+            <div class="section-header" style="margin-bottom: 20px;">03 — Connect</div>
+            <h2 class="reveal-scroll">Let's build something<br>meaningful.</h2>
+            <p style="max-width: 500px; margin-bottom: 30px;">Open to professional conversations, collaborations, and meaningful connections.</p>
+            
+            <a href="mailto:hello@solomonolad.com" class="cta-btn">Get in touch</a>
+
+            <div class="social-links">
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">Email</a>
+                <a href="#" class="social-link">LinkedIn</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="copyright">© 2026 Solomon Olad.</div>
+        <div class="status">System: Online</div>
+    </footer>
+
+    <script>
+        // Wait for DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Initial Load Animation
+            const tl = gsap.timeline();
+
+            tl.to("body", { opacity: 1, duration: 0.5 })
+              .from(".logo", { y: -20, opacity: 0, duration: 0.8, ease: "power3.out" })
+              .from(".nav-link", { y: -20, opacity: 0, stagger: 0.1, duration: 0.8, ease: "power3.out" }, "-=0.5")
+              .from(".hero-label", { opacity: 0, x: -20, duration: 0.8 }, "-=0.5")
+              .from(".reveal-line", { y: 100, opacity: 0, duration: 1, stagger: 0.1, ease: "power4.out" }, "-=0.5")
+              .from(".hero-desc", { opacity: 0, y: 20, duration: 0.8 }, "-=0.5")
+              .from(".scroll-indicator", { opacity: 0, y: 20, duration: 0.8 }, "-=0.2");
+
+            // 2. Typewriter Effect Simulation for "Builder."
+            const words = ["Builder.", "Digital Creative.", "Entrepreneur."];
+            let i = 0;
+            let timer;
+
+            // Simple text replacement logic for the Hero Subtitle
+            function typeWriter() {
+                const target = document.getElementById('typewriter');
+                // Optional: You can expand this to actual typing effect with splitText, 
+                // but for clean design, a smooth fade/swap is often more premium.
+            }
+
+            // 3. Marquee Animation
+            gsap.to(".marquee-wrapper", {
+                xPercent: -50,
+                repeat: -1,
+                duration: 20,
+                ease: "linear"
+            });
+
+            // 4. Scroll Reveal - General Text
+            gsap.utils.toArray('.reveal-scroll').forEach(element => {
+                gsap.from(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                });
+            });
+
+            // 5. Card Stagger Reveal
+            gsap.from(".reveal-card", {
+                scrollTrigger: {
+                    trigger: ".focus-grid",
+                    start: "top 75%"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power3.out"
+            });
+
+            // 6. List Item Stagger Reveal
+            gsap.from(".reveal-item", {
+                scrollTrigger: {
+                    trigger: ".skill-list",
+                    start: "top 75%"
+                },
+                x: -30,
+                opacity: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power3.out"
+            });
+
+            // 7. Custom Cursor Logic
+            const cursor = document.querySelector('.cursor');
+            
+            document.addEventListener('mousemove', (e) => {
+                gsap.to(cursor, {
+                    x: e.clientX,
+                    y: e.clientY,
+                    duration: 0.1,
+                    ease: "power2.out"
+                });
+            });
+
+            // Hover effects for cursor
+            const links = document.querySelectorAll('a, .focus-card, .skill-item');
+            links.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    gsap.to(cursor, { scale: 3, backgroundColor: "rgba(255,255,255,0.1)", duration: 0.3 });
+                });
+                link.addEventListener('mouseleave', () => {
+                    gsap.to(cursor, { scale: 1, backgroundColor: "transparent", duration: 0.3 });
+                });
+            });
+
+        });
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solomon Olad - Entrepreneur & Builder focused on developing skills, capital, and connections.">
+    <title>Solomon Olad | Entrepreneur & Builder</title>
+    
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+
+    <style>
+        :root {
+            --bg: #0F1115;
+            --text: #F5F6F7;
+            --accent: #5F7C8A;
+            --accent-soft: #8FA6B2;
+            --grid-line: rgba(245, 246, 247, 0.1);
+            --font-head: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            opacity: 0;
+            cursor: none;
+        }
+
+        /* Hide custom cursor for touch devices */
+        @media (hover: hover) and (pointer: fine) {
+            body {
+                cursor: none;
+            }
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--text);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor.hover {
+            width: 40px;
+            height: 40px;
+            background-color: var(--text);
+        }
+
+        /* Utility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-head);
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        p {
+            font-weight: 300;
+            line-height: 1.6;
+            color: #d1d1d1;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--text);
+            transform: translateX(-101%);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .nav-link:hover::after {
+            transform: translateX(0);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            min-height: 600px;
+        }
+
+        .hero-content {
+            margin-top: 60px;
+        }
+
+        .hero-label {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            margin-bottom: 30px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title span {
+            display: block;
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            font-size: 1.25rem;
+            color: var(--accent-soft);
+            margin-bottom: 40px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.5;
+        }
+
+        /* MARQUEE */
+        .marquee-section {
+            padding: 60px 0;
+            border-top: 1px solid var(--grid-line);
+            border-bottom: 1px solid var(--grid-line);
+            overflow: hidden;
+        }
+
+        .marquee-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .marquee-wrapper {
+            display: flex;
+            gap: 4rem;
+            width: max-content;
+        }
+
+        .marquee-item {
+            font-family: var(--font-head);
+            font-size: clamp(2rem, 4vw, 4vw);
+            color: transparent;
+            -webkit-text-stroke: 1px var(--accent-soft);
+            text-stroke: 1px var(--accent-soft);
+            opacity: 0.6;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+        }
+
+        .section-header {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+
+        .about-text h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 30px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 90%;
+        }
+
+        /* FOCUS AREAS GRID */
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 80px;
+        }
+
+        .focus-card {
+            border: 1px solid var(--grid-line);
+            padding: 40px;
+            transition: background 0.4s ease, border-color 0.4s ease;
+            cursor: none;
+        }
+
+        .focus-card:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: var(--accent);
+        }
+
+        .focus-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .focus-card p {
+            font-size: 0.95rem;
+            color: var(--accent-soft);
+        }
+
+        /* SKILLS LIST */
+        .skills-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .skill-list {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .skill-item {
+            border-bottom: 1px solid var(--grid-line);
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: none;
+        }
+
+        .skill-item:hover {
+            padding-left: 20px;
+            border-color: var(--text);
+        }
+
+        .skill-name {
+            font-family: var(--font-head);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .skill-arrow {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover .skill-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .contact h2 {
+            font-size: clamp(3rem, 6vw, 6rem);
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            padding: 20px 40px;
+            border: 1px solid var(--text);
+            color: var(--text);
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+            background: transparent;
+            cursor: none;
+        }
+
+        .cta-btn:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .social-links {
+            margin-top: 60px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            color: var(--accent-soft);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            cursor: none;
+        }
+
+        footer {
+            padding: 40px 50px;
+            border-top: 1px solid var(--grid-line);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--accent-soft);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { 
+                padding: 20px; 
+                mix-blend-mode: normal;
+            }
+            .nav-links {
+                gap: 20px;
+            }
+            .about { 
+                grid-template-columns: 1fr; 
+                gap: 30px;
+            }
+            .hero-title { 
+                font-size: 3rem; 
+            }
+            .hero-desc {
+                font-size: 1.1rem;
+            }
+            .marquee-item { 
+                font-size: 2rem; 
+            }
+            .skill-name { 
+                font-size: 1.5rem; 
+            }
+            .section-padding {
+                padding: 80px 0;
+            }
+            .contact h2 {
+                font-size: 2.5rem;
+            }
+            .focus-card {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none;
+            }
+            .hero {
+                min-height: 500px;
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Utility classes for GSAP */
+        .reveal-text { 
+            opacity: 0;
+        }
+        .line-wrap { 
+            overflow: hidden; 
+            display: block; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor"></div>
+
+    <nav>
+        <div class="logo">Solomon Olad.</div>
+        <div class="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero container">
+            <div class="hero-content">
+                <span class="hero-label">Entrepreneur building skills, capital, and connections in public.</span>
+                <h1 class="hero-title">
+                    <div class="line-wrap"><span>I'm Solomon Olad.</span></div>
+                    <div class="line-wrap"><span id="typewriter">Builder.</span></div>
+                </h1>
+                <p class="hero-desc">
+                    An aspiring entrepreneur focused on building practical skills, documenting my journey, and creating opportunities through business, trading, and networking.
+                </p>
+            </div>
+            <div class="scroll-indicator">Scroll to Explore</div>
+        </section>
+
+        <div class="marquee-section">
+            <div class="marquee-container">
+                <div class="marquee-wrapper">
+                    <div class="marquee-item">Frontend Development</div>
+                    <div class="marquee-item">Graphic Design</div>
+                    <div class="marquee-item">Video Editing</div>
+                    <div class="marquee-item">Personal Branding</div>
+                    <div class="marquee-item">Innovation</div>
+                    <div class="marquee-item">Frontend Development</div>
+                    <div class="marquee-item">Graphic Design</div>
+                    <div class="marquee-item">Video Editing</div>
+                    <div class="marquee-item">Personal Branding</div>
+                    <div class="marquee-item">Innovation</div>
+                </div>
+            </div>
+        </div>
+
+        <section id="about" class="container section-padding">
+            <div class="about">
+                <div class="section-header">01 — Identity</div>
+                <div class="about-text">
+                    <h2>I'm at an early but intentional stage of my entrepreneurial journey.</h2>
+                    <p>My focus is simple: learn real-world skills, apply them in practical environments, and compound progress over time. I'm not positioning myself as a guru or expert — I'm building, experimenting, and documenting.</p>
+                    <p>This site exists to give a clear picture of who I am, what I'm working on, and what I'm capable of.</p>
+                </div>
+            </div>
+
+            <div class="focus-grid">
+                <div class="focus-card">
+                    <h3>Entrepreneurship</h3>
+                    <p>Learning how online businesses are built, positioned, and scaled through real execution.</p>
+                </div>
+                <div class="focus-card">
+                    <h3>Trading</h3>
+                    <p>Developing discipline, capital awareness, and consistency as part of my journey.</p>
+                </div>
+                <div class="focus-card">
+                    <h3>Networking</h3>
+                    <p>Building genuine relationships with entrepreneurs, creatives, and builders.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="container section-padding">
+            <div class="section-header" style="margin-bottom: 40px;">02 — Capabilities</div>
+            <div class="skills-section">
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <span class="skill-name">Frontend Development</span>
+                        <span class="skill-arrow">→</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Graphic Design</span>
+                        <span class="skill-arrow">→</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Video Editing</span>
+                        <span class="skill-arrow">→</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Content & Personal Branding</span>
+                        <span class="skill-arrow">→</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Creative Problem-Solving</span>
+                        <span class="skill-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container section-padding" style="text-align: center; border-top: 1px solid var(--grid-line);">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h3 style="font-size: 1.5rem; color: var(--text); margin-bottom: 20px;">Purpose</h3>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; color: var(--accent-soft); text-align: left;">
+                    <div style="flex: 1; min-width: 200px; padding: 20px;">• Professional digital presence</div>
+                    <div style="flex: 1; min-width: 200px; padding: 20px;">• Clear identity & positioning</div>
+                    <div style="flex: 1; min-width: 200px; padding: 20px;">• Networking & credibility</div>
+                    <div style="flex: 1; min-width: 200px; padding: 20px;">• Long-term documentation</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container section-padding contact">
+            <div class="section-header" style="margin-bottom: 20px;">03 — Connect</div>
+            <h2>Let's build something<br>meaningful.</h2>
+            <p style="max-width: 500px; margin-bottom: 30px;">Open to professional conversations, collaborations, and meaningful connections.</p>
+            
+            <a href="mailto:hello@solomonolad.com" class="cta-btn">Get in touch</a>
+
+            <div class="social-links">
+                <a href="#" class="social-link">Instagram</a>
+                <a href="mailto:hello@solomonolad.com" class="social-link">Email</a>
+                <a href="#" class="social-link">LinkedIn</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="copyright">© <span id="current-year">2024</span> Solomon Olad.</div>
+        <div class="status">System: Online</div>
+    </footer>
+
+    <script>
+        // Initialize when DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Register GSAP plugins
+            if (typeof gsap !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+            }
+
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // 1. Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // 2. Typewriter Effect
+            const typewriterElement = document.getElementById('typewriter');
+            if (typewriterElement) {
+                const words = ['Builder.', 'Digital Creative.', 'Entrepreneur.'];
+                let wordIndex = 0;
+                let charIndex = 0;
+                let isDeleting = false;
+                let isPaused = false;
+
+                function typeWriter() {
+                    if (isPaused) return;
+
+                    const currentWord = words[wordIndex];
+                    
+                    if (isDeleting) {
+                        typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+                        charIndex--;
+                    } else {
+                        typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+                        charIndex++;
+                    }
+
+                    if (!isDeleting && charIndex === currentWord.length) {
+                        isPaused = true;
+                        setTimeout(() => {
+                            isPaused = false;
+                            isDeleting = true;
+                            setTimeout(typeWriter, 100);
+                        }, 1500);
+                    } else if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        wordIndex = (wordIndex + 1) % words.length;
+                        setTimeout(typeWriter, 500);
+                    } else {
+                        setTimeout(typeWriter, isDeleting ? 50 : 100);
+                    }
+                }
+
+                // Start typewriter after initial animation
+                setTimeout(typeWriter, 2000);
+            }
+
+            // 3. Marquee Animation
+            const marqueeWrapper = document.querySelector('.marquee-wrapper');
+            if (marqueeWrapper && typeof gsap !== 'undefined') {
+                const marqueeWidth = marqueeWrapper.scrollWidth / 2;
+                
+                gsap.to('.marquee-wrapper', {
+                    x: -marqueeWidth,
+                    duration: 20,
+                    repeat: -1,
+                    ease: "linear"
+                });
+            }
+
+            // 4. Scroll Animations with GSAP (if available)
+            if (typeof gsap !== 'undefined') {
+                // Initial load animation
+                gsap.to("body", { 
+                    opacity: 1, 
+                    duration: 0.5 
+                });
+
+                // Hero section animations
+                gsap.from('.hero-label', {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: 0.2
+                });
+
+                gsap.from('.hero-title .line-wrap', {
+                    y: 100,
+                    opacity: 0,
+                    duration: 1,
+                    stagger: 0.2,
+                    delay: 0.4,
+                    ease: "power4.out"
+                });
+
+                gsap.from('.hero-desc', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: 0.8
+                });
+
+                gsap.from('.scroll-indicator', {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: 1.2
+                });
+
+                // Scroll-triggered animations
+                const animateOnScroll = (elements, options = {}) => {
+                    elements.forEach(el => {
+                        gsap.from(el, {
+                            scrollTrigger: {
+                                trigger: el,
+                                start: "top 80%",
+                                toggleActions: "play none none reverse"
+                            },
+                            y: options.y || 30,
+                            opacity: 0,
+                            duration: 0.8,
+                            ease: "power3.out",
+                            ...options
+                        });
+                    });
+                };
+
+                // Animate about section
+                animateOnScroll(document.querySelectorAll('.about-text h2, .about-text p'));
+
+                // Animate focus cards
+                gsap.from('.focus-card', {
+                    scrollTrigger: {
+                        trigger: '.focus-grid',
+                        start: "top 75%"
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: "power3.out"
+                });
+
+                // Animate skills list
+                gsap.from('.skill-item', {
+                    scrollTrigger: {
+                        trigger: '.skill-list',
+                        start: "top 75%"
+                    },
+                    x: -30,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: "power3.out"
+                });
+            }
+
+            // 5. Custom Cursor (only for desktop)
+            const cursor = document.querySelector('.cursor');
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+            if (!isTouchDevice && cursor) {
+                let mouseX = 0;
+                let mouseY = 0;
+                let cursorX = 0;
+                let cursorY = 0;
+
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+
+                // Smooth cursor animation
+                function updateCursor() {
+                    cursorX += (mouseX - cursorX) * 0.15;
+                    cursorY += (mouseY - cursorY) * 0.15;
+                    
+                    cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+                    requestAnimationFrame(updateCursor);
+                }
+
+                updateCursor();
+
+                // Hover effects
+                const interactiveElements = document.querySelectorAll('a, .focus-card, .skill-item, .cta-btn');
+                
+                interactiveElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.classList.add('hover');
+                    });
+                    
+                    el.addEventListener('mouseleave', () => {
+                        cursor.classList.remove('hover');
+                    });
+                });
+
+                // Hide cursor when leaving window
+                document.addEventListener('mouseleave', () => {
+                    cursor.style.opacity = '0';
+                });
+                
+                document.addEventListener('mouseenter', () => {
+                    cursor.style.opacity = '1';
+                });
+            } else if (cursor) {
+                // Hide cursor on touch devices
+                cursor.style.display = 'none';
+                document.body.style.cursor = 'default';
+            }
+        });
+
+        // Fallback for when GSAP fails to load
+        window.addEventListener('error', (e) => {
+            if (e.target.tagName === 'SCRIPT' && e.target.src.includes('gsap')) {
+                console.warn('GSAP failed to load, showing content anyway');
+                document.body.style.opacity = '1';
+            }
+        });
+    </script>
+</body>
+</html> -->

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Section - Solomon Olad</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0F1115;
+            color: #F5F6F7;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .service-number {
+            font-size: clamp(8rem, 20vw, 18rem);
+            line-height: 0.85;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            -webkit-text-stroke: 1.5px rgba(245, 246, 247, 0.3);
+            -webkit-text-fill-color: transparent;
+            text-stroke: 1.5px rgba(245, 246, 247, 0.3);
+            text-fill-color: transparent;
+        }
+        
+        .service-label {
+            color: #FF4D4D;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        
+        .service-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        
+        .service-desc {
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            line-height: 1.6;
+            color: rgba(245, 246, 247, 0.6);
+            font-weight: 300;
+        }
+        
+        .service-item {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            padding: 1.25rem 0;
+            border-bottom: 1px solid rgba(245, 246, 247, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .service-item:hover {
+            border-bottom-color: rgba(255, 77, 77, 0.4);
+            padding-left: 1rem;
+        }
+        
+        .service-item-number {
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            color: rgba(245, 246, 247, 0.4);
+            font-weight: 400;
+        }
+        
+        .service-item:hover .service-item-number {
+            color: #FF4D4D;
+        }
+        
+        .reveal-line {
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FF4D4D, transparent);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 1rem;
+        }
+        
+        .service-section.active .reveal-line {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .service-number {
+                -webkit-text-stroke: 1px rgba(245, 246, 247, 0.3);
+            }
+        }
+
+        /* Demo content to show section in context */
+        .demo-header {
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .demo-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-header p {
+            font-size: 1.2rem;
+            color: rgba(245, 246, 247, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <!-- Demo Header (optional, to show section in context) -->
+    <div class="demo-header">
+        <h1>Services Section</h1>
+        <p>Scroll down to see the services section with GSAP animations</p>
+    </div>
+
+    <!-- SERVICES SECTION -->
+    <section id="services">
+        <!-- Service 01 - Frontend Development -->
+        <div class="service-section min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-24" id="service-01">
+            <div class="max-w-screen-2xl mx-auto w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+                    <!-- Left Side - Number -->
+                    <div class="lg:col-span-4 flex items-start">
+                        <div class="service-number-wrap">
+                            <div class="service-number">01</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side - Content -->
+                    <div class="lg:col-span-8 space-y-8">
+                        <div class="space-y-4">
+                            <div class="service-label">Development</div>
+                            <h2 class="service-title">Frontend Development & Engineering</h2>
+                            <div class="reveal-line"></div>
+                            <p class="service-desc mt-6">
+                                Building blazing-fast, pixel-perfect web applications with modern frameworks and cutting-edge animation techniques. Every interaction is crafted to delight.
+                            </p>
+                        </div>
+                        
+                        <!-- Service Items -->
+                        <div class="mt-12 space-y-0">
+                            <div class="service-item flex justify-between items-center">
+                                <span>React & Next.js Applications</span>
+                                <span class="service-item-number">01</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Advanced GSAP Animations</span>
+                                <span class="service-item-number">02</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Three.js & WebGL Experiences</span>
+                                <span class="service-item-number">03</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Responsive Design Systems</span>
+                                <span class="service-item-number">04</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Performance Optimization</span>
+                                <span class="service-item-number">05</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>API Integration & State Management</span>
+                                <span class="service-item-number">06</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service 02 - Graphic Design -->
+        <div class="service-section min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-24" id="service-02">
+            <div class="max-w-screen-2xl mx-auto w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+                    <div class="lg:col-span-4 flex items-start">
+                        <div class="service-number-wrap">
+                            <div class="service-number">02</div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-8 space-y-8">
+                        <div class="space-y-4">
+                            <div class="service-label">Creative</div>
+                            <h2 class="service-title">Graphic Design & Visual Identity</h2>
+                            <div class="reveal-line"></div>
+                            <p class="service-desc mt-6">
+                                Crafting memorable visual identities that resonate with audiences. From concept to execution, every design tells a story and builds brand recognition.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-12 space-y-0">
+                            <div class="service-item flex justify-between items-center">
+                                <span>Brand Identity & Strategy</span>
+                                <span class="service-item-number">01</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Logo Design & Typography</span>
+                                <span class="service-item-number">02</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>UI/UX Design</span>
+                                <span class="service-item-number">03</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Marketing Collateral</span>
+                                <span class="service-item-number">04</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Social Media Assets</span>
+                                <span class="service-item-number">05</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Motion Graphics</span>
+                                <span class="service-item-number">06</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service 03 - Trading & Markets -->
+        <div class="service-section min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-24" id="service-03">
+            <div class="max-w-screen-2xl mx-auto w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+                    <div class="lg:col-span-4 flex items-start">
+                        <div class="service-number-wrap">
+                            <div class="service-number">03</div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-8 space-y-8">
+                        <div class="space-y-4">
+                            <div class="service-label">Financial</div>
+                            <h2 class="service-title">Trading & Market Analysis</h2>
+                            <div class="reveal-line"></div>
+                            <p class="service-desc mt-6">
+                                Mastering financial markets through disciplined analysis, psychological resilience, and systematic risk management. Trading as both art and science.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-12 space-y-0">
+                            <div class="service-item flex justify-between items-center">
+                                <span>Technical Analysis</span>
+                                <span class="service-item-number">01</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Risk Management Strategies</span>
+                                <span class="service-item-number">02</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Trading Psychology</span>
+                                <span class="service-item-number">03</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Market Research & Insights</span>
+                                <span class="service-item-number">04</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Portfolio Optimization</span>
+                                <span class="service-item-number">05</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Algorithmic Trading Systems</span>
+                                <span class="service-item-number">06</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service 04 - Content & Strategy -->
+        <div class="service-section min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-24" id="service-04">
+            <div class="max-w-screen-2xl mx-auto w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+                    <div class="lg:col-span-4 flex items-start">
+                        <div class="service-number-wrap">
+                            <div class="service-number">04</div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-8 space-y-8">
+                        <div class="space-y-4">
+                            <div class="service-label">Strategy</div>
+                            <h2 class="service-title">Content Creation & Strategy</h2>
+                            <div class="reveal-line"></div>
+                            <p class="service-desc mt-6">
+                                Crafting compelling narratives and strategic content that engages audiences, builds authority, and drives meaningful connections across digital platforms.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-12 space-y-0">
+                            <div class="service-item flex justify-between items-center">
+                                <span>Copywriting & Messaging</span>
+                                <span class="service-item-number">01</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Content Strategy Development</span>
+                                <span class="service-item-number">02</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Personal Branding</span>
+                                <span class="service-item-number">03</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Social Media Management</span>
+                                <span class="service-item-number">04</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Storytelling & Narrative Design</span>
+                                <span class="service-item-number">05</span>
+                            </div>
+                            <div class="service-item flex justify-between items-center">
+                                <span>Audience Growth Strategies</span>
+                                <span class="service-item-number">06</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Footer (optional) -->
+    <div class="demo-header">
+        <p>End of services section</p>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initialize animations when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Get all service sections
+            const serviceSections = gsap.utils.toArray('.service-section');
+            
+            serviceSections.forEach((section, index) => {
+                const number = section.querySelector('.service-number');
+                const label = section.querySelector('.service-label');
+                const title = section.querySelector('.service-title');
+                const desc = section.querySelector('.service-desc');
+                const items = section.querySelectorAll('.service-item');
+                const revealLine = section.querySelector('.reveal-line');
+                
+                // Reset initial states to prevent visibility issues
+                gsap.set([label, title, desc, ...items], {
+                    opacity: 0,
+                    y: 30
+                });
+                
+                gsap.set(number, {
+                    opacity: 0,
+                    scale: 0.8
+                });
+                
+                gsap.set(revealLine, {
+                    width: 0
+                });
+
+                // Number animation
+                gsap.to(number, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                        end: 'top 50%',
+                        toggleActions: 'play none none reverse',
+                        once: true
+                    }
+                });
+
+                // Content animation timeline
+                const contentTimeline = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 70%',
+                        end: 'top 40%',
+                        toggleActions: 'play none none reverse',
+                        once: true
+                    }
+                });
+
+                contentTimeline
+                    .to(label, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power2.out'
+                    })
+                    .to(title, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power2.out'
+                    }, '-=0.3')
+                    .to(desc, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power2.out'
+                    }, '-=0.3')
+                    .to(revealLine, {
+                        width: '100%',
+                        duration: 1.2,
+                        ease: 'power2.out'
+                    }, '-=0.5');
+
+                // Service items animation
+                gsap.to(items, {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.1,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 60%',
+                        end: 'top 30%',
+                        toggleActions: 'play none none reverse',
+                        once: true
+                    }
+                });
+
+                // Activate section class for reveal line
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: 'top 50%',
+                    onEnter: () => section.classList.add('active'),
+                    onLeaveBack: () => section.classList.remove('active')
+                });
+
+                // Hover effects for service items
+                items.forEach(item => {
+                    item.addEventListener('mouseenter', () => {
+                        gsap.to(item, {
+                            x: 10,
+                            duration: 0.3,
+                            ease: 'power2.out'
+                        });
+                    });
+                    
+                    item.addEventListener('mouseleave', () => {
+                        gsap.to(item, {
+                            x: 0,
+                            duration: 0.3,
+                            ease: 'power2.out'
+                        });
+                    });
+                });
+            });
+
+            // Refresh ScrollTrigger on resize
+            window.addEventListener('resize', () => {
+                ScrollTrigger.refresh();
+            });
+        });
+    </script>
+</body>
+</html>
