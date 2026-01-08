@@ -1044,19 +1044,17 @@
             // --- FOCUS SECTION HORIZONTAL SCROLL ---
             const sections = gsap.utils.toArray("#focus-track > .focus-screen");
 
-            if (window.matchMedia("(min-width: 768px)").matches) {
-                gsap.to(sections, {
-                    xPercent: -100 * (sections.length - 1),
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: "#focus-wrapper",
-                        pin: true,
-                        scrub: 1,
-                        snap: 1 / (sections.length - 1),
-                        end: () => "+=" + document.querySelector("#focus-track").offsetWidth
-                    }
-                });
-            }
+            gsap.to(sections, {
+                xPercent: -100 * (sections.length - 1),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#focus-wrapper",
+                    pin: true,
+                    scrub: 1,
+                    snap: 1 / (sections.length - 1),
+                    end: () => "+=" + document.querySelector("#focus-track").offsetWidth
+                }
+            });
 
             // --- MARQUEE ANIMATION ---
             const marqueeWrapper = document.querySelector('.marquee-wrapper');
