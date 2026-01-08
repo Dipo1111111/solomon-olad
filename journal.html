@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Journal | Solomon Olad</title>
+    <link rel="icon" type="image/png" href="SOLOMON..png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000000;
+            color: #F5F6F7;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        ::selection {
+            background: #0A8BC9;
+            color: white;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #0A8BC9;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(10, 139, 201, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        /* Utility */
+        .char {
+            display: inline-block;
+        }
+
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        /* Mobile Responsive Cursor */
+        @media (max-width: 768px) {
+
+            .cursor-dot,
+            .cursor-outline {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white">
+
+    <!-- Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full px-6 py-6 flex justify-between items-center z-50 mix-blend-difference">
+        <a href="index.html"
+            class="text-xl md:text-2xl font-bold tracking-tighter hover:text-[#0A8BC9] transition-colors">
+            SOLOMON.
+        </a>
+        <a href="index.html" class="text-sm font-medium tracking-wide hover:text-[#0A8BC9] transition-colors">
+            Back to Home
+        </a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="h-screen w-full flex flex-col justify-center items-center px-4 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center z-10">
+            <h1 class="text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] font-bold tracking-tight mb-6 reveal-text"
+                id="hero-headline">
+                The Trading Journal<br>
+                <span class="text-[#0A8BC9]">I Use Every Day</span> — Free
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 opacity-0" id="hero-subtext">
+                Built in Notion to track trades, backtests, mistakes, and weekly reviews.
+                This is the exact system I use while trading and studying.
+            </p>
+
+            <div class="opacity-0" id="hero-cta">
+                <a href="#download"
+                    class="inline-block bg-[#0A8BC9] text-white px-8 py-4 text-lg font-bold tracking-wide hover:bg-[#087ab0] transition-colors rounded-sm">
+                    Get the Journal
+                </a>
+                <p class="mt-4 text-xs text-gray-500 uppercase tracking-widest">No signals. No hype. Just structure.</p>
+            </div>
+        </div>
+
+        <!-- Background Element -->
+        <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-black to-black z-0 pointer-events-none">
+        </div>
+    </section>
+
+    <!-- VISUAL PROOF SECTION -->
+    <section class="py-24 bg-black overflow-hidden relative" id="carousel-section">
+        <div class="container mx-auto px-4 mb-12 relative z-10">
+            <div class="text-center max-w-2xl mx-auto">
+                <p class="text-[#0A8BC9] text-sm tracking-widest uppercase mb-4">Inside the System</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">A clean, distraction-free system built for
+                    process-driven traders.</h2>
+            </div>
+        </div>
+
+        <!-- Carousel Container -->
+        <div class="relative w-full max-w-[90vw] md:max-w-[70vw] mx-auto overflow-hidden group">
+            <div class="flex" id="carousel-track">
+                <!-- Slide 1 -->
+                <div class="w-full flex-shrink-0 px-2 md:px-4">
+                    <div
+                        class="relative aspect-video rounded-lg overflow-hidden border border-gray-800 bg-[#0f0f0f] shadow-2xl">
+                        <img src="notion_journal_preview_1.png" alt="Journal Dashboard"
+                            class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="w-full flex-shrink-0 px-2 md:px-4">
+                    <div
+                        class="relative aspect-video rounded-lg overflow-hidden border border-gray-800 bg-[#0f0f0f] shadow-2xl">
+                        <img src="notion_journal_preview_2.png" alt="Journal Entry" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="w-full flex-shrink-0 px-2 md:px-4">
+                    <div
+                        class="relative aspect-video rounded-lg overflow-hidden border border-gray-800 bg-[#0f0f0f] shadow-2xl">
+                        <img src="notion_journal_preview_3.png" alt="Backtesting Data"
+                            class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="w-full flex-shrink-0 px-2 md:px-4">
+                    <div
+                        class="relative aspect-video rounded-lg overflow-hidden border border-gray-800 bg-[#0f0f0f] shadow-2xl">
+                        <img src="notion_journal_preview_4.png" alt="Weekly Review" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="w-full flex-shrink-0 px-2 md:px-4">
+                    <div
+                        class="relative aspect-video rounded-lg overflow-hidden border border-gray-800 bg-[#0f0f0f] shadow-2xl">
+                        <img src="notion_journal_preview_5.png" alt="Mistake Tracking"
+                            class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <!-- Slide 6 -->
+                <div class="w-full flex-shrink-0 px-2 md:px-4">
+                    <div
+                        class="relative aspect-video rounded-lg overflow-hidden border border-gray-800 bg-[#0f0f0f] shadow-2xl">
+                        <img src="notion_journal_preview_6.png" alt="Analytics" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <!-- Slide 7 -->
+                <div class="w-full flex-shrink-0 px-2 md:px-4">
+                    <div
+                        class="relative aspect-video rounded-lg overflow-hidden border border-gray-800 bg-[#0f0f0f] shadow-2xl">
+                        <img src="notion_journal_preview_7.png" alt="Resources" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button id="prev-btn"
+                class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 hover:bg-[#0A8BC9] text-white p-3 rounded-full backdrop-blur-sm transition-all shadow-lg disabled:opacity-30">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <button id="next-btn"
+                class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 hover:bg-[#0A8BC9] text-white p-3 rounded-full backdrop-blur-sm transition-all shadow-lg disabled:opacity-30">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- WHY THIS EXISTS -->
+    <section class="py-24 bg-black border-t border-gray-900">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12">Why I built this.</h2>
+
+            <div class="space-y-8 text-lg md:text-xl text-gray-300 leading-relaxed" id="story-content">
+                <p>I trade regularly. I backtest. I journal.</p>
+                <p>Most tools felt either bloated, expensive, or disconnected from how I actually work.</p>
+                <p>So I built my own system — <span class="text-white font-medium">simple, honest, and focused on
+                        improvement.</span></p>
+                <p>I’m sharing it for free because I believe good tools should be accessible.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT'S INSIDE -->
+    <section class="py-24 bg-black">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-[#0A8BC9]">What's Inside</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4 group">
+                            <span
+                                class="mt-1 w-2 h-2 bg-[#0A8BC9] rotate-45 group-hover:rotate-0 transition-transform"></span>
+                            <span class="text-gray-300 group-hover:text-white transition-colors">Complete Trade Logging
+                                System</span>
+                        </li>
+                        <li class="flex items-start gap-4 group">
+                            <span
+                                class="mt-1 w-2 h-2 bg-[#0A8BC9] rotate-45 group-hover:rotate-0 transition-transform"></span>
+                            <span class="text-gray-300 group-hover:text-white transition-colors">Dedicated Backtesting
+                                Database</span>
+                        </li>
+                        <li class="flex items-start gap-4 group">
+                            <span
+                                class="mt-1 w-2 h-2 bg-[#0A8BC9] rotate-45 group-hover:rotate-0 transition-transform"></span>
+                            <span class="text-gray-300 group-hover:text-white transition-colors">Mistake Tracking &
+                                Categorization</span>
+                        </li>
+                        <li class="flex items-start gap-4 group">
+                            <span
+                                class="mt-1 w-2 h-2 bg-[#0A8BC9] rotate-45 group-hover:rotate-0 transition-transform"></span>
+                            <span class="text-gray-300 group-hover:text-white transition-colors">Weekly Review
+                                Templates</span>
+                        </li>
+                        <li class="flex items-start gap-4 group">
+                            <span
+                                class="mt-1 w-2 h-2 bg-[#0A8BC9] rotate-45 group-hover:rotate-0 transition-transform"></span>
+                            <span class="text-gray-300 group-hover:text-white transition-colors">Automated Stats (Win
+                                Rate, R:R)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-[#0f0f0f] p-8 border border-gray-800">
+                    <p class="text-gray-400 italic">
+                        "This is a tool, not a shortcut. It forces you to look at your data honestly."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section class="py-24 bg-black border-y border-gray-900">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-px bg-gray-900">
+                <div class="bg-black p-12 md:p-16">
+                    <h3 class="text-2xl font-bold mb-8 text-white">For:</h3>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="text-green-500 w-5 h-5"></i> Traders focused on process
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="text-green-500 w-5 h-5"></i> People who journal consistently
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="text-green-500 w-5 h-5"></i> Beginners to intermediate levels
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-black p-12 md:p-16">
+                    <h3 class="text-2xl font-bold mb-8 text-gray-500">Not For:</h3>
+                    <ul class="space-y-4 text-gray-500">
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="x" class="text-red-900 w-5 h-5"></i> Signal seekers
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="x" class="text-red-900 w-5 h-5"></i> Shortcut chasers
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="x" class="text-red-900 w-5 h-5"></i> People avoiding accountability
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EMAIL CAPTURE -->
+    <section id="download" class="py-32 bg-black flex flex-col items-center text-center px-4 relative">
+        <div class="max-w-md w-full relative z-10">
+            <h2 class="text-3xl font-bold mb-4">Want the journal?</h2>
+            <p class="text-gray-400 mb-8">Leave your email and I’ll send the link, future improvements, and other tools
+                I build.</p>
+
+            <form id="email-form" class="space-y-4" onsubmit="handleFormSubmit(event)">
+                <div class="relative">
+                    <input type="email" required placeholder="Enter your email"
+                        class="w-full bg-[#111] border border-gray-800 text-white px-6 py-4 focus:outline-none focus:border-[#0A8BC9] transition-colors placeholder:text-gray-600">
+                </div>
+                <button type="submit"
+                    class="w-full bg-[#0A8BC9] text-white font-bold tracking-wide py-4 hover:bg-[#087ab0] transition-colors flex items-center justify-center gap-2 group">
+                    <span>Send Me the Journal</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </form>
+
+            <p class="text-xs text-gray-600 mt-6">
+                No spam. Unsubscribe anytime. |
+                <a href="#" class="underline hover:text-white transition-colors" onclick="showDownload(event)">Prefer
+                    direct access?</a>
+            </p>
+
+            <!-- Success State (Hidden by default) -->
+            <div id="success-message"
+                class="hidden absolute inset-0 bg-black flex flex-col items-center justify-center space-y-6">
+                <div
+                    class="w-16 h-16 rounded-full bg-green-900/20 text-green-500 flex items-center justify-center mb-4">
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white">You're in.</h3>
+                <a href="https://www.notion.so/TET-Trading-Journal-2-0-2a999f30d11580bba32ef59f245ed692?source=copy_link"
+                    target="_blank"
+                    class="ttext-[#0A8BC9] border-b border-[#0A8BC9] pb-1 hover:text-white hover:border-white transition-colors">
+                    Click here to view it
+                </a>
+                <p class="text-gray-500 text-sm mt-8">Check your email for the backup link.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER NAV -->
+    <footer class="py-12 border-t border-gray-900 bg-black text-center">
+        <div class="flex justify-center gap-8 mb-8">
+            <a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a>
+            <a href="index.html#about" class="text-gray-400 hover:text-white transition-colors">About</a>
+            <a href="index.html#technical" class="text-gray-400 hover:text-white transition-colors">Process</a>
+        </div>
+
+        <div class="flex justify-center gap-6 mb-8 text-[#0A8BC9]">
+            <a href="https://youtube.com/@solomonolad" target="_blank"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+            <a href="https://linkedin.com/in/solomon-olad" target="_blank"><i data-lucide="linkedin"
+                    class="w-5 h-5"></i></a>
+            <a href="https://instagram.com/realsolomonolad" target="_blank"><i data-lucide="instagram"
+                    class="w-5 h-5"></i></a>
+        </div>
+
+        <p class="text-gray-700 text-xs">
+            &copy; 2026 Solomon Olad. This site documents how I work, trade, and build systems.
+        </p>
+    </footer>
+
+    <script>
+        // Icons
+        lucide.createIcons();
+
+        // Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+
+            // Hover effects
+            document.querySelectorAll('a, button, input').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.style.width = '60px';
+                    cursorOutline.style.height = '60px';
+                    cursorOutline.style.borderColor = '#0A8BC9';
+                    cursorDot.style.backgroundColor = 'transparent';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.style.width = '40px';
+                    cursorOutline.style.height = '40px';
+                    cursorOutline.style.borderColor = 'rgba(10, 139, 201, 0.5)';
+                    cursorDot.style.backgroundColor = '#0A8BC9';
+                });
+            });
+        }
+
+        // Form Handling
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            btn.innerText = 'Redirecting...';
+            btn.classList.add('opacity-70', 'cursor-not-allowed');
+
+            // Simulate slight delay for effect
+            setTimeout(() => {
+                // Open Notion link in new tab
+                window.open('https://www.notion.so/TET-Trading-Journal-2-0-2a999f30d11580bba32ef59f245ed692?source=copy_link', '_blank');
+
+                // Show success state locally
+                document.getElementById('email-form').style.display = 'none';
+                document.getElementById('success-message').classList.remove('hidden');
+                document.getElementById('success-message').classList.add('flex');
+
+                // Reset button
+                btn.innerText = originalText;
+                btn.classList.remove('opacity-70', 'cursor-not-allowed');
+            }, 1000);
+        }
+
+        function showDownload(e) {
+            e.preventDefault();
+            window.open('https://www.notion.so/TET-Trading-Journal-2-0-2a999f30d11580bba32ef59f245ed692?source=copy_link', '_blank');
+        }
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- CAROUSEL LOGIC ---
+        const track = document.getElementById('carousel-track');
+        const slides = track.querySelectorAll('.flex-shrink-0');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const slideCount = slides.length;
+        let currentIndex = 0;
+        let autoPlayTimer;
+
+        function updateCarousel() {
+            const percentage = currentIndex * -100;
+            gsap.to(track, {
+                xPercent: percentage,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slideCount;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+            updateCarousel();
+        }
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            autoPlayTimer = setInterval(nextSlide, 3000);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayTimer);
+        }
+
+        // Event Listeners
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            startAutoPlay(); // Reset timer on interaction
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            startAutoPlay();
+        });
+
+        const carouselSection = document.getElementById('carousel-section');
+        carouselSection.addEventListener('mouseenter', stopAutoPlay);
+        carouselSection.addEventListener('mouseleave', startAutoPlay);
+
+        // Start
+        startAutoPlay();
+
+        // Hero Reveal
+        const tl = gsap.timeline();
+        tl.from('#hero-headline', {
+            y: 50,
+            opacity: 0,
+            duration: 1.2,
+            ease: 'power4.out',
+            delay: 0.2
+        })
+            .to('#hero-subtext', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power2.out'
+            }, '-=0.6')
+            .to('#hero-cta', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.4');
+
+        // Staggered Text Reveal for Why Section
+        gsap.utils.toArray('#story-content p').forEach((p, i) => {
+            gsap.from(p, {
+                opacity: 0,
+                y: 20,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: p,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        // Horizontal Scroll for Gallery (Removed for Carousel)
+        // ... replaced by carousel logic above
+
+
+    </script>
+</body>
+
+</html>
